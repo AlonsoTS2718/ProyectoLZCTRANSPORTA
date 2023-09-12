@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ProyectoLZCTRANSPORTA</string>
+    <string name="iniciarSesion">Iniciar sesión con correo electronico</string>
+    <string name="correo">Correo</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="iniciar">Iniciar sesión</string>
+    <string name="olvideContraseña">Olvide mi contraseña</string>
+
+</resources>

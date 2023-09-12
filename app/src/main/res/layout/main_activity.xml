@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/imgInicioCombi"
+        android:layout_width="match_parent"
+        android:layout_height="212dp"
+        android:src="@drawable/combi" />
+
+    <TextView
+        android:id="@+id/txtInicioCorreo"
+        style="@style/viewCustom"
+        android:padding="20dp"
+        android:gravity="center_horizontal"
+        android:text="@string/iniciarSesion"
+        android:textSize="15sp"
+        android:textColor="@color/blue" />
+
+    <EditText
+        android:id="@+id/etInicioCorreo"
+        style="@style/viewCustom"
+        android:hint="@string/correo"
+        android:inputType="textEmailAddress"
+        android:paddingTop="30dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+
+    <EditText
+        android:id="@+id/etIncioContraseña"
+        style="@style/viewCustom"
+        android:hint="@string/contraseña"
+        android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+
+    <TextView
+        android:id="@+id/btnInicioSesion"
+        style="@style/viewCustom"
+        android:background="@color/blue"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:textAlignment="center"
+        android:text="@string/iniciar"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:onClick="hechoInciar"
+        />
+
+    <TextView
+        android:id="@+id/txtOlvideContraseña"
+        style="@style/viewCustom"
+        android:onClick="olvideContraseña"
+        android:paddingTop="0dp"
+        android:gravity="center_horizontal"
+        android:text="@string/olvideContraseña"
+        android:textSize="12sp"
+        android:textColor="@color/blue2"
+        />
+
+    <LinearLayout
+        android:id="@+id/lyTerminos"
+        style="@style/viewCustom"
+        android:orientation="horizontal"
+        android:background="@color/black"
+        />
+
+</LinearLayout>
