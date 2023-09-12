@@ -65,14 +65,63 @@
         android:gravity="center_horizontal"
         android:text="@string/olvideContraseña"
         android:textSize="12sp"
-        android:textColor="@color/blue2"
-        />
+        android:textColor="@color/blue2"/>
 
     <LinearLayout
         android:id="@+id/lyTerminos"
         style="@style/viewCustom"
         android:orientation="horizontal"
-        android:background="@color/black"
-        />
+        android:background="@color/white"
+        >
+        <CheckBox
+            android:id="@+id/cbAceptar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="@string/aceptarTerminos"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/tvTerminos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terminos"
+            android:textSize="10sp"
+            android:textColor="@color/purple_200"
+            android:layout_marginLeft="5dp"
+            android:onClick="goTerminos"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/google"
+        android:paddingLeft="10dp"
+        android:text="@string/google"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+    <Button
+        android:id="@+id/btnFacebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/white"
+        android:drawableLeft="@drawable/facebook"
+        android:paddingLeft="10dp"
+        android:text="@string/facebook"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
 
 </LinearLayout>
