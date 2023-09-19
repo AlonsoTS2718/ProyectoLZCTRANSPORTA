@@ -56,6 +56,16 @@
         android:textStyle="bold"
         android:onClick="hechoInciar"
         />
+    <TextView
+        android:id="@+id/txtRegistrarme"
+        style="@style/viewCustom"
+        android:onClick="registrarme"
+        android:paddingTop="0dp"
+        android:gravity="center_horizontal"
+        android:text="@string/registrarme"
+        android:textSize="12sp"
+        android:textColor="@color/blue2"/>
+
 
     <TextView
         android:id="@+id/txtOlvideContraseña"
@@ -89,7 +99,7 @@
             android:textSize="10sp"
             android:textColor="@color/purple_200"
             android:layout_marginLeft="5dp"
-            android:onClick="goTerminos"
+            android:onClick="irTerminos"
             />
 
     </LinearLayout>
@@ -123,5 +133,6 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
 
+    //
 
 </LinearLayout>

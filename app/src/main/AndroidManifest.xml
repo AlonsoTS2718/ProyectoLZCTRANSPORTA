@@ -12,13 +12,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".TerminosActivity"
+            android:exported="false"
+            android:label="@string/title_activity_terminos"
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
+        <activity
+            android:name=".OlvideContraseñaActivity"
+            android:exported="false"
+            android:label="@string/title_activity_olvide_contraseña"
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
+        <activity
+            android:name=".RegistrarmeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_registrarme"
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
+        <activity
+            android:name=".ActivityOlvideContraseña"
+            android:exported="false"
+            android:label="@string/title_activity_olvide_contraseña"
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
+        <activity
+            android:name=".ActivityRegistrarme"
+            android:exported="false"
+            android:label="@string/title_activity_registrarme"
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.ProyectoLZCTRANSPORTA">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +49,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

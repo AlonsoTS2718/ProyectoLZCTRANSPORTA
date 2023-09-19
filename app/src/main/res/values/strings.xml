@@ -4,9 +4,13 @@
     <string name="correo">Correo</string>
     <string name="contraseña">Contraseña</string>
     <string name="iniciar">Iniciar sesión</string>
+    <string name="registrarme">Registrarme</string>
     <string name="olvideContraseña">Olvide mi contraseña</string>
     <string name="aceptarTerminos">He leido y acepto los</string>
     <string name="terminos">términos y condiciones de uso</string>
     <string name="google">Google</string>
     <string name="facebook">FaceBook</string>
+    <string name="title_activity_registrarme">ActivityRegistrarme</string>
+    <string name="title_activity_olvide_contraseña">ActivityOlvideContraseña</string>
+    <string name="title_activity_terminos">TerminosActivity</string>
 </resources>
