@@ -17,7 +17,7 @@ import com.example.proyectolzctransporta.ui.theme.ProyectoLZCTRANSPORTATheme
 class TerminosActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {R.layout.terminos_main}
+        setContentView(R.layout.terminos_main)
     }
 
     fun irTerminos(v: View){

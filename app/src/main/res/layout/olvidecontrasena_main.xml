@@ -5,5 +5,51 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     >
+    <TextView
+        android:id="@+id/imgOlvideContraseña"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/account_reactivate"
+        android:drawableTint="@color/blue2"
+        />
+
+    <EditText
+        android:id="@+id/etOlvideCorreo"
+        style="@style/viewCustom"
+        android:hint="@string/correo"
+        android:inputType="textEmailAddress"
+        android:paddingTop="20dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+    <EditText
+        android:id="@+id/etOlvideTelefono"
+        style="@style/viewCustom"
+        android:hint="@string/telefono"
+        android:inputType="phone"
+        android:paddingTop="20dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+
+    <TextView
+        android:id="@+id/btnOlvideRecuperar"
+        style="@style/viewCustom"
+        android:background="@color/blue"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:textAlignment="center"
+        android:text="@string/recuperar"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:onClick="Recuperar"
+        />
 
 </LinearLayout>

@@ -18,12 +18,12 @@
             android:label="@string/title_activity_terminos"
             android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
         <activity
-            android:name=".OlvideContraseñaActivity"
+            android:name=".OlvideContrasenaActivity"
             android:exported="true"
             android:label="@string/title_activity_olvide_contraseña"
             android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
         <activity
-            android:name=".RegistrarmeActivity"
+            android:name=".RegistrarActivity"
             android:exported="true"
             android:label="@string/title_activity_registrarme"
             android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />

@@ -17,6 +17,8 @@
     <string name="nombre">Nombres</string>
     <string name="apellido">Apellidos</string>
     <string name="telefono">Número de telefono</string>
+    <string name="registra">Registrar usuario</string>
+    <string name="recuperar">Recuperar Contraseña</string>
 
 
 

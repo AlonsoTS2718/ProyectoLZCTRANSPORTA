@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -86,13 +85,13 @@
 
 
     <LinearLayout
-        android:id="@+id/lyTerminos"
+        android:id="@+id/lyRegistrarTerminos"
         style="@style/viewCustom"
         android:orientation="horizontal"
         android:background="@color/white"
         >
         <CheckBox
-            android:id="@+id/cbAceptar"
+            android:id="@+id/cbRegistrarAceptar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
@@ -100,7 +99,7 @@
             android:textColor="@color/black"
             />
         <TextView
-            android:id="@+id/tvTerminos"
+            android:id="@+id/tvRegistrarTerminos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/terminos"
@@ -112,5 +111,19 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/btnRegistrar"
+        style="@style/viewCustom"
+        android:background="@color/blue"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:textAlignment="center"
+        android:text="@string/registra"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:onClick="Registrar"
+        />
 
 </LinearLayout>
