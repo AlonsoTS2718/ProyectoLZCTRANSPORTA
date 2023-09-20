@@ -15,32 +15,7 @@ import com.example.proyectolzctransporta.ui.theme.ProyectoLZCTRANSPORTATheme
 class OlvideContraseñaActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            ProyectoLZCTRANSPORTATheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting2("Android")
-                }
-            }
-        }
+        setContent {R.layout.olvidecontrasena_main}
     }
 }
 
-@Composable
-fun Greeting2(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview2() {
-    ProyectoLZCTRANSPORTATheme {
-        Greeting2("Android")
-    }
-}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -56,19 +57,21 @@
         android:textStyle="bold"
         android:onClick="hechoInciar"
         />
+
     <TextView
-        android:id="@+id/txtRegistrarme"
+        android:id="@+id/txtInicioRegistrarme"
         style="@style/viewCustom"
+        android:gravity="center_horizontal"
         android:onClick="registrarme"
         android:paddingTop="0dp"
-        android:gravity="center_horizontal"
         android:text="@string/registrarme"
+        android:textColor="@color/blue2"
         android:textSize="12sp"
-        android:textColor="@color/blue2"/>
+         />
 
 
     <TextView
-        android:id="@+id/txtOlvideContraseña"
+        android:id="@+id/txtInicioOlvideContraseña"
         style="@style/viewCustom"
         android:onClick="olvideContraseña"
         android:paddingTop="0dp"
@@ -77,35 +80,10 @@
         android:textSize="12sp"
         android:textColor="@color/blue2"/>
 
-    <LinearLayout
-        android:id="@+id/lyTerminos"
-        style="@style/viewCustom"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        >
-        <CheckBox
-            android:id="@+id/cbAceptar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="@string/aceptarTerminos"
-            android:textColor="@color/black"
-            />
-        <TextView
-            android:id="@+id/tvTerminos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/terminos"
-            android:textSize="10sp"
-            android:textColor="@color/purple_200"
-            android:layout_marginLeft="5dp"
-            android:onClick="irTerminos"
-            />
 
-    </LinearLayout>
 
     <Button
-        android:id="@+id/btnGoogle"
+        android:id="@+id/btnInicioGoogle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -120,7 +98,7 @@
 
 
     <Button
-        android:id="@+id/btnFacebook"
+        android:id="@+id/btnInicioFacebook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"

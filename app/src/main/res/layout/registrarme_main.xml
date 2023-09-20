@@ -1,7 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/imgRegistrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/account_arrow_up_outline"
+        android:drawableTint="@color/blue2"
+        />
+
+    <EditText
+        android:id="@+id/etRegistrarNombre"
+        style="@style/viewCustom"
+        android:hint="@string/nombre"
+        android:inputType="text"
+        android:paddingTop="20dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+    <EditText
+        android:id="@+id/etRegistrarApellido"
+        style="@style/viewCustom"
+        android:hint="@string/apellido"
+        android:inputType="text"
+        android:paddingTop="20dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+    <EditText
+        android:id="@+id/etRegistrarTelefono"
+        style="@style/viewCustom"
+        android:hint="@string/telefono"
+        android:inputType="phone"
+        android:paddingTop="20dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+    <EditText
+        android:id="@+id/etRegistrarCorreo"
+        style="@style/viewCustom"
+        android:hint="@string/correo"
+        android:inputType="textEmailAddress"
+        android:paddingTop="20dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+    <EditText
+        android:id="@+id/etRegistrarContraseña"
+        style="@style/viewCustom"
+        android:hint="@string/contraseña"
+        android:inputType="textPassword"
+        android:paddingTop="20dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+    <EditText
+        android:id="@+id/etRegistrarConfirmarContraseña"
+        style="@style/viewCustom"
+        android:hint="@string/confirmarContraseña"
+        android:inputType="textPassword"
+        android:paddingTop="20dp"
+        android:layout_marginTop="0dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/blue"
+        android:backgroundTint="@color/blue"
+        />
+
+
+
+    <LinearLayout
+        android:id="@+id/lyTerminos"
+        style="@style/viewCustom"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        >
+        <CheckBox
+            android:id="@+id/cbAceptar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="@string/aceptarTerminos"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/tvTerminos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terminos"
+            android:textSize="10sp"
+            android:textColor="@color/purple_200"
+            android:layout_marginLeft="5dp"
+            android:onClick="irTerminos"
+            />
+
+    </LinearLayout>
+
 
 </LinearLayout>

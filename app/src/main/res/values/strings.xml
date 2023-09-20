@@ -3,6 +3,7 @@
     <string name="iniciarSesion">Iniciar sesión con correo electronico</string>
     <string name="correo">Correo</string>
     <string name="contraseña">Contraseña</string>
+    <string name="confirmarContraseña">Confirmar Contraseña</string>
     <string name="iniciar">Iniciar sesión</string>
     <string name="registrarme">Registrarme</string>
     <string name="olvideContraseña">Olvide mi contraseña</string>
@@ -13,4 +14,10 @@
     <string name="title_activity_registrarme">ActivityRegistrarme</string>
     <string name="title_activity_olvide_contraseña">ActivityOlvideContraseña</string>
     <string name="title_activity_terminos">TerminosActivity</string>
+    <string name="nombre">Nombres</string>
+    <string name="apellido">Apellidos</string>
+    <string name="telefono">Número de telefono</string>
+
+
+
 </resources>

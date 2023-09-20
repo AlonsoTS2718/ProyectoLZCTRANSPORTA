@@ -33,10 +33,7 @@ class MainActivity : ComponentActivity() {
         startActivity(Intent(this,OlvideContraseñaActivity::class.java))
     }
 
-    fun irTerminos(v: View){
-        val intent = Intent(this, TerminosActivity::class.java)
-        startActivity(intent)
-    }
+
 
 }
 
