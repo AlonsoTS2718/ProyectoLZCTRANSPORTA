@@ -1,7 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    // Add the Google services Gradle plugin android studio
+    id("com.google.gms.google-services")
+
 }
+
+
+
+
 
 android {
     namespace 'com.example.proyectolzctransporta'
@@ -75,13 +82,12 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
-    //lIBRERIAS FIRE BASE
-    implementation platform('com.google.firebase:firebase-bom:32.2.3')
-    implementation 'com.google.firebase:firebase-auth:22.1.1'
+
     //implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-database:20.2.2'
     implementation 'com.google.firebase:firebase-firestore:24.7.1'
-
-
+    //add firebase
+    implementation platform('com.google.firebase:firebase-bom:32.3.1')
 
 }
+
