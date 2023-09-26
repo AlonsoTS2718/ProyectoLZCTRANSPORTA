@@ -33,7 +33,7 @@
         />
 
     <EditText
-        android:id="@+id/etIncioContraseña"
+        android:id="@+id/etInicioContrasena"
         style="@style/viewCustom"
         android:hint="@string/contraseña"
         android:inputType="textPassword"
@@ -70,9 +70,9 @@
 
 
     <TextView
-        android:id="@+id/txtInicioOlvideContraseña"
+        android:id="@+id/txtInicioOlvideContrasena"
         style="@style/viewCustom"
-        android:onClick="olvideContraseña"
+        android:onClick="olvideContrasena"
         android:paddingTop="0dp"
         android:gravity="center_horizontal"
         android:text="@string/olvideContraseña"
@@ -83,6 +83,7 @@
 
     <Button
         android:id="@+id/btnInicioGoogle"
+        android:onClick="goMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -93,7 +94,8 @@
         android:text="@string/google"
         android:textAlignment="textStart"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+         />
 
 
     <Button

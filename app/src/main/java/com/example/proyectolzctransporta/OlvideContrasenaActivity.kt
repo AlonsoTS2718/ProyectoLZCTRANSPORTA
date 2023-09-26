@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 class OlvideContrasenaActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.olvidecontrasena_main)
+        setContentView(R.layout.olvidecontrasena)
     }
 }
 

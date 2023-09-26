@@ -27,9 +27,14 @@
             android:exported="true"
             android:label="@string/title_activity_registrarme"
             android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
-
+        <!--Revisar este activity porque la agregue ahuevo  -->
         <activity
             android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
+        <!--Revisar este activity porque la agregue ahuevo  -->
+        <activity
+            android:name=".LoginAppActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
