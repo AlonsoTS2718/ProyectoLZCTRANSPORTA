@@ -54,7 +54,7 @@
         android:text="@string/iniciar"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:onClick="hechoInciar"
+        android:onClick="login"
         />
 
     <TextView
