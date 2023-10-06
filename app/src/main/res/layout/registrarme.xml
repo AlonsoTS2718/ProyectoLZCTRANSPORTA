@@ -123,7 +123,7 @@
         android:text="@string/registra"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:onClick="goRegister"
+        android:onClick="register"
         />
 
 </LinearLayout>

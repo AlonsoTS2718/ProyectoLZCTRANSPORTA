@@ -15,52 +15,75 @@ import kotlin.properties.Delegates
 
 class RegistrarActivity : ComponentActivity() {
 
-
-
+    private lateinit var nombre: EditText
+    private lateinit var apellidos: EditText
+    private lateinit var numeroTelefono: EditText
+    private lateinit var etInicioCorreo: EditText
+    private lateinit var etInicioContrasena: EditText
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.registrarme)
-
+        etInicioCorreo = findViewById(R.id.etRegistrarCorreo)
+        etInicioContrasena = findViewById(R.id.etRegistrarContraseña)
+        nombre = findViewById(R.id.etRegistrarNombre)
+        apellidos = findViewById(R.id.etRegistrarApellido)
+        numeroTelefono = findViewById(R.id.etRegistrarTelefono)
+        mAuth = FirebaseAuth.getInstance()
     }
 
-    private var name by Delegates.notNull<String>()
+    fun register(view: View) {
+        if (validateFields()) {
+            registerUser()
+        }
+    }
 
-    private var number by Delegates.notNull<String>()
-    private var email by Delegates.notNull<String>()
-    private var password by Delegates.notNull<String>()
-    private lateinit var etRegistrarNombre: EditText
-    private lateinit var etRegistrarApellido: EditText
-    private lateinit var etRegistrarTelefono: EditText
-    private lateinit var etInicioCorreo: EditText
-    private lateinit var etInicioContrasena: EditText
-    private lateinit var mAuth: FirebaseAuth
-    private fun goRegister() {
-        email = etInicioCorreo.text.toString();
-        password = etInicioContrasena.text.toString()
+    private fun validateFields(): Boolean {
+        val email = etInicioCorreo.text.toString().trim()
+        val password = etInicioContrasena.text.toString().trim()
+        val nombreText = nombre.text.toString().trim()
+        val apellidosText = apellidos.text.toString().trim()
+        val numeroTelefonoText = numeroTelefono.text.toString().trim()
+        if (email.isEmpty() || password.isEmpty() || nombreText.isEmpty() ||
+            apellidosText.isEmpty() || numeroTelefonoText.isEmpty()
+        ) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        // Puedes agregar más validaciones según tus necesidades, por ejemplo, verificar el formato del email.
+        return true
+    }
 
+    private fun registerUser() {
+        val email = etInicioCorreo.text.toString().trim()
+        val password = etInicioContrasena.text.toString().trim()
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(){
-                if(it.isSuccessful){
-                    var dateRegister = SimpleDateFormat("dd/mm/yyyy").format(Date())
-                    var dbRegister = FirebaseFirestore.getInstance()
-                    dbRegister.collection("users").document(email).set(hashMapOf(
-                        "user" to email,
-                        "dataRegister" to dateRegister
-                    ))
-                }else
+        mAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val dateRegister = SimpleDateFormat("dd/MM/yyyy").format(Date())
+                    val dbRegister = FirebaseFirestore.getInstance()
+                    dbRegister.collection("users").document(email).set(
+                        hashMapOf(
+                            "nombre" to nombre.text.toString(),
+                            "apellidos" to apellidos.text.toString(),
+                            "numeroTelefono" to numeroTelefono.text.toString(),
+                            "user" to email,
+                            "dataRegister" to dateRegister
+                        )
+                    )
+                    goLogin()
+                } else {
                     Toast.makeText(this, "Algo no ha funcionado", Toast.LENGTH_SHORT).show()
+                }
             }
     }
 
-
-
+    private fun goLogin() {
+        startActivity(Intent(this, LoginAppActivity::class.java))
     }
-
-
-
-
+}
 
 
 

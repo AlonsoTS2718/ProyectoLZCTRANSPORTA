@@ -25,7 +25,6 @@ class LoginAppActivity : ComponentActivity() {
         lateinit var providerSession : String
 
     }
-    private var RESULT_CODE_GOOGLE_SIGN_IN = 100
     private var email by Delegates.notNull<String>()
     private var password by Delegates.notNull<String>()
     private lateinit var etInicioCorreo: EditText
@@ -34,7 +33,7 @@ class LoginAppActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
-        etInicioCorreo = findViewById(R.id.etInicioCorreo)
+        etInicioCorreo = findViewById(R.id.etInicioCorreo);
         etInicioContrasena = findViewById(R.id.etInicioContrasena)
         mAuth = FirebaseAuth.getInstance()
 
@@ -43,78 +42,16 @@ class LoginAppActivity : ComponentActivity() {
         loginUser()
     }
     private fun loginUser() {
-        email = etInicioCorreo.text.toString()
+        email = etInicioCorreo.text.toString();
         password = etInicioContrasena.text.toString()
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     goMain(email, "email")
-                }else {
-                   // goRegister()// Podria mandar mensaje de no registrado
-                Toast.makeText(this, "Necesita registrarse", Toast.LENGTH_SHORT).show()
                 }
             }
-        /*
-        fun registrar(v: View) {
-            val intent = Intent(this, RegistrarActivity::class.java)
-            startActivity(intent)
-        }
-        fun olvideContrasena(v: View) {
-            startActivity(Intent(this, OlvideContrasenaActivity::class.java))
-        }
-        */
 
     }
-
-/*
-
-   // Inicio de sesión con Google
-    fun callsignInGoogle(view: View){
-        signInGoogle()
-    }
-    private fun signInGoogle(){
-        // Configure Google Sign In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-        var googleSignInClient = GoogleSignIn.getClient(this, gso)
-        startActivityForResult(googleSignInClient.signInIntent, RESULT_CODE_GOOGLE_SIGN_IN)
-
-
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RESULT_CODE_GOOGLE_SIGN_IN) {
-
-            try {
-                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)!!
-
-                if (account != null){
-                    email = account.email!!
-                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                    mAuth.signInWithCredential(credential).addOnCompleteListener{
-                        if (it.isSuccessful) goMain(email, "Google")
-                        else Toast.makeText(this, "Error en la conexión con Google", Toast.LENGTH_SHORT)
-
-                    }
-                }
-
-
-            } catch (e: ApiException) {
-                Toast.makeText(this, "Error en la conexión con Google", Toast.LENGTH_SHORT)
-            }
-        }
-
-    }
-*/
 
     private fun goMain(email: String, provider: String) {
         useremail = email
@@ -122,20 +59,13 @@ class LoginAppActivity : ComponentActivity() {
         startActivity(Intent(this, MainActivity::class.java))
     }
 
-
     fun registrar(view: View){
         startActivity(Intent(this, RegistrarActivity::class.java))
     }
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
 
 
