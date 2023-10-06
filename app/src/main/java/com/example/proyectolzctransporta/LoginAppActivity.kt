@@ -34,7 +34,7 @@ class LoginAppActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
-        etInicioCorreo = findViewById(R.id.etInicioCorreo);
+        etInicioCorreo = findViewById(R.id.etInicioCorreo)
         etInicioContrasena = findViewById(R.id.etInicioContrasena)
         mAuth = FirebaseAuth.getInstance()
 
@@ -43,14 +43,15 @@ class LoginAppActivity : ComponentActivity() {
         loginUser()
     }
     private fun loginUser() {
-        email = etInicioCorreo.text.toString();
+        email = etInicioCorreo.text.toString()
         password = etInicioContrasena.text.toString()
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     goMain(email, "email")
                 }else {
-                    goRegister()
+                   // goRegister()// Podria mandar mensaje de no registrado
+                Toast.makeText(this, "Necesita registrarse", Toast.LENGTH_SHORT).show()
                 }
             }
         /*
@@ -120,23 +121,7 @@ class LoginAppActivity : ComponentActivity() {
         providerSession = provider
         startActivity(Intent(this, MainActivity::class.java))
     }
-    private fun goRegister() {
-        email = etInicioCorreo.text.toString();
-        password = etInicioContrasena.text.toString()
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(){
-                if(it.isSuccessful){
-                    var dateRegister = SimpleDateFormat("dd/mm/yyyy").format(Date())
-                    var dbRegister = FirebaseFirestore.getInstance()
-                    dbRegister.collection("users").document(email).set(hashMapOf(
-                        "user" to email,
-                        "dataRegister" to dateRegister
-                    ))
-                }else
-                    Toast.makeText(this, "Algo no ha funcionado", Toast.LENGTH_SHORT).show()
-            }
-    }
 
     fun registrar(view: View){
         startActivity(Intent(this, RegistrarActivity::class.java))
