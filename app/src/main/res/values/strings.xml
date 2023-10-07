@@ -20,6 +20,13 @@
     <string name="registra">Registrar usuario</string>
     <string name="recuperar">Recuperar Contraseña</string>
 
+    <string name="tituloUbicacion">Permitir acceso a ubicacion</string>
+    <string name="preguntaUbicacion">¿Desea Permitir acceso a ubicacion?</string>
+    <string name="siUbi">Permitir</string>
+    <string name="noUbi">Rechazar</string>
+
+
+
 
 
 </resources>
