@@ -24,7 +24,7 @@ import android.Manifest
 
 
 class MainActivity : ComponentActivity() {
-/fsfaffsdfsfsfsfs
+//fsfaffsdfsfsfsfs
     companion object{
         val REQUIRED_PERMISSIONS_GPS=
         arrayOf(
