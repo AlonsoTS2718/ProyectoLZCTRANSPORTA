@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
             Manifest.permission.ACCESS_FINE_LOCATION)
     }
     private lateinit var etInicioCorreo: EditText
-
+//fsfsd
 
 
     //Variable global
