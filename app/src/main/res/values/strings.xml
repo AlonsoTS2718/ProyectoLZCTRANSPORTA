@@ -24,9 +24,8 @@
     <string name="preguntaUbicacion">¿Desea Permitir acceso a ubicacion?</string>
     <string name="siUbi">Permitir</string>
     <string name="noUbi">Rechazar</string>
+    <string name="title_activity_map">MapActivity</string>
 
-
-
-
+    <string name="google_maps_key">AIzaSyCEB44IRhVq6rs7RaUJD_580lEJhe5aAlA</string>
 
 </resources>

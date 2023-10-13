@@ -2,13 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-    <uses-permission android:name="android.hardware.location.gps"/>
-
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.hardware.location.gps" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
         tools:targetApi="31">
+        <activity
+            android:name=".MapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_map"
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
         <activity
             android:name=".TerminosActivity"
             android:exported="true"
@@ -34,13 +36,11 @@
             android:name=".RegistrarActivity"
             android:exported="true"
             android:label="@string/title_activity_registrarme"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
-        <!--Revisar este activity porque la agregue ahuevo  -->
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" /> <!-- Revisar este activity porque la agregue ahuevo -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
-        <!--Revisar este activity porque la agregue ahuevo  -->
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" /> <!-- Revisar este activity porque la agregue ahuevo -->
         <activity
             android:name=".LoginAppActivity"
             android:exported="true"
@@ -53,6 +53,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCEB44IRhVq6rs7RaUJD_580lEJhe5aAlA"/>
+
     </application>
 
 </manifest>

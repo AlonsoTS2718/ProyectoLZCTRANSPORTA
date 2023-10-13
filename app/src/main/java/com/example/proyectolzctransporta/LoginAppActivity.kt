@@ -56,7 +56,7 @@ class LoginAppActivity : ComponentActivity() {
     private fun goMain(email: String, provider: String) {
         useremail = email
         providerSession = provider
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, MapActivity::class.java))
     }
 
     fun registrar(view: View){
