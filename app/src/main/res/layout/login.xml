@@ -57,6 +57,7 @@
                 android:src="@drawable/ic_person_white"/>
 
 
+
             <TextView
                 android:id="@+id/txtInicioCorreo"
                 style="@style/viewCustom"
@@ -65,7 +66,7 @@
                 android:text="@string/iniciarSesion"
                 android:textSize="15sp"
                 android:textColor="@color/white"
-                android:layout_marginTop="200dp"
+
 
                 />
 
@@ -163,6 +164,8 @@
             android:textColor="@color/black"
             android:textSize="16sp"
                 android:backgroundTint="@color/white"/>
+
+
 
 
         </LinearLayout>
