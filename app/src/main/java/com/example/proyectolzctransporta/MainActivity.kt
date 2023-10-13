@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
     }
     private lateinit var etInicioCorreo: EditText
 //fsfsd
-
+//esta es una prueba 121023
 
     //Variable global
      var activatedGPS: Boolean = true

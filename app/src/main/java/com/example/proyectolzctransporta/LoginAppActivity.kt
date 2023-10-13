@@ -23,7 +23,7 @@ class LoginAppActivity : ComponentActivity() {
     companion object{
         lateinit var useremail : String
         lateinit var providerSession : String
-
+//12102023
     }
     private var email by Delegates.notNull<String>()
     private var password by Delegates.notNull<String>()
