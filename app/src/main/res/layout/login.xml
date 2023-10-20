@@ -8,41 +8,34 @@
     android:orientation="vertical"
     android:background="@color/white">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/comb"
-                    android:scaleType="centerCrop"
-                    />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/comb" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/black"
-                    android:alpha="0.7" />
-            </FrameLayout>
-
+    </FrameLayout>
 
 
     <FrameLayout
+        android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="580dp"
+        android:layout_gravity="center"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_gravity="center">
-
+        android:layout_marginRight="40dp">
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="580dp"
-            android:background="@drawable/rounded_layout"
             android:alpha="0.3"
-            />
+            android:background="@drawable/rounded_layout" />
 
         <LinearLayout
 
@@ -54,122 +47,130 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_person_white"/>
-
+                android:src="@drawable/ic_person_white" />
 
 
             <TextView
                 android:id="@+id/txtInicioCorreo"
                 style="@style/viewCustom"
-                android:padding="5dp"
                 android:gravity="center_horizontal"
+                android:padding="5dp"
                 android:text="@string/iniciarSesion"
-                android:textSize="15sp"
                 android:textColor="@color/white"
+                android:textSize="15sp"
 
 
                 />
 
             <EditText
-            android:id="@+id/etInicioCorreo"
-            style="@style/viewCustom"
-            android:hint="@string/correo"
-            android:inputType="textEmailAddress"
-            android:paddingTop="30dp"
-            android:layout_marginTop="0dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:backgroundTint="@color/black"
+                android:id="@+id/etInicioCorreo"
+                style="@style/viewCustom"
+                android:layout_marginTop="0dp"
+                android:backgroundTint="@color/black"
                 android:drawableStart="@drawable/ic_email_white"
+                android:hint="@string/correo"
+                android:inputType="textEmailAddress"
+                android:paddingTop="30dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
 
-            />
+                />
 
             <EditText
-            android:id="@+id/etInicioContrasena"
-            style="@style/viewCustom"
-            android:hint="@string/contraseña"
-            android:inputType="textPassword"
-            android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:id="@+id/etInicioContrasena"
+                style="@style/viewCustom"
                 android:backgroundTint="@color/black"
                 android:drawableStart="@drawable/ic_lock_white"
+                android:hint="@string/contraseña"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
 
-            />
+                />
 
             <TextView
-            android:id="@+id/btnInicioSesion"
-            style="@style/viewCustom"
+                android:id="@+id/btnInicioSesion"
+                style="@style/viewCustom"
 
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:paddingTop="7dp"
-            android:paddingBottom="7dp"
-            android:textAlignment="center"
-            android:text="@string/iniciar"
-            android:textColor="@color/black"
-            android:textStyle="bold"
+                android:layout_height="wrap_content"
                 android:background="@drawable/rounded_button"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:text="@string/iniciar"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
 
-            />
-            <TextView
-            android:id="@+id/txtInicioRegistrarme"
-            style="@style/viewCustom"
-            android:gravity="center_horizontal"
-            android:onClick="registrar"
-            android:paddingTop="0dp"
-            android:text="@string/registrarme"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-             />
-            <TextView
-            android:id="@+id/txtInicioOlvideContrasena"
-            style="@style/viewCustom"
-            android:onClick="olvideContrasena"
-            android:paddingTop="0dp"
-            android:gravity="center_horizontal"
-            android:text="@string/olvideContraseña"
-            android:textSize="12sp"
-            android:textColor="@color/white"/>
+                />
 
+            <TextView
+                android:id="@+id/txtInicioRegistrarme"
+                style="@style/viewCustom"
+                android:gravity="center_horizontal"
+                android:onClick="registrar"
+                android:paddingTop="0dp"
+                android:text="@string/registrarme"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txtInicioOlvideContrasena"
+                style="@style/viewCustom"
+                android:gravity="center_horizontal"
+                android:onClick="olvideContrasena"
+                android:paddingTop="0dp"
+                android:text="@string/olvideContraseña"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+            <!--  -->
             <Button
-            android:id="@+id/btnInicioGoogle"
-            android:onClick="goMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+                android:id="@+id/btnInicioGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/rounded_button"
-            android:drawableLeft="@drawable/google"
-            android:paddingLeft="10dp"
-            android:text="@string/google"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="16sp"
                 android:backgroundTint="@color/white"
-             />
+                android:drawableLeft="@drawable/google"
+                android:onClick="callSignInGoogle"
+                android:paddingLeft="10dp"
+                android:text="@string/google"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
             <Button
-            android:id="@+id/btnInicioFacebook"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+
+                android:id="@+id/btnInicioFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/rounded_button"
-            android:drawableLeft="@drawable/facebook"
-            android:paddingLeft="10dp"
-            android:text="@string/facebook"
-            android:textAlignment="textStart"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-                android:backgroundTint="@color/white"/>
-
-
+                android:backgroundTint="@color/white"
+                android:drawableLeft="@drawable/facebook"
+                android:paddingLeft="10dp"
+                android:text="@string/facebook"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:onClick="callSignInFacebook"
+                />
 
 
         </LinearLayout>
 
     </FrameLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.7"
+        android:background="@color/black"
+        app:layout_anchor="@+id/frameLayout"
+        app:layout_anchorGravity="center" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
