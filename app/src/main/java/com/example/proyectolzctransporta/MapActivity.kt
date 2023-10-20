@@ -2,6 +2,7 @@ package com.example.proyectolzctransporta
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
@@ -64,7 +66,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         easyWayLocation = EasyWayLocation(this, locationRequest, false, false, this)
 
         locationPermissions.launch(arrayOf(
-            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
         ))
 
@@ -152,6 +154,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             return
         }
         googleMap?.isMyLocationEnabled = false
+
+        try{
+            val success = googleMap?.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(this, R.raw.stilo)
+            )
+            if(!success!!){
+                Log.d("MAPAS","No se pudo encontrar el estilo")
+            }
+        }catch(e: Resources.NotFoundException){
+            Log.d("MAPAS", "Error: ${e.toString()}" )
+        }
     }
 
     override fun locationOn() {
