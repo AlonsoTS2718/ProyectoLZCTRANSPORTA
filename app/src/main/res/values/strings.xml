@@ -25,6 +25,7 @@
     <string name="siUbi">Permitir</string>
     <string name="noUbi">Rechazar</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="buscarCombi">Buscar combi</string>
 
     <string name="google_maps_key">AIzaSyCEB44IRhVq6rs7RaUJD_580lEJhe5aAlA</string>
 
