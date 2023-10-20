@@ -8,10 +8,20 @@
     android:orientation="vertical"
     android:background="@color/white">
 
+
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.7"
+            android:background="@color/black"
+            app:layout_anchor="@+id/frameLayout"
+            app:layout_anchorGravity="center" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -164,13 +174,7 @@
 
     </FrameLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.7"
-        android:background="@color/black"
-        app:layout_anchor="@+id/frameLayout"
-        app:layout_anchorGravity="center" />
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
