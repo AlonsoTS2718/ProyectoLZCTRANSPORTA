@@ -78,7 +78,7 @@ class LoginAppActivity : ComponentActivity() {
     }
 
     /*CODIG PARA INICIO SESIÓN GOOGLE*/
-    /*
+
     fun callSignInGoogle (view:View){
         signInGoogle()
     }
@@ -124,7 +124,7 @@ class LoginAppActivity : ComponentActivity() {
         }
 
     }
-*/
+
     /*---------------------------*/
 
     /*INICIO DE SESION FACEBOOK*/
