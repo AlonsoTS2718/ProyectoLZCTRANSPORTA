@@ -145,8 +145,8 @@ dependencies {
 
     //librerías para inicio de sesión google
     implementation("com.google.firebase:firebase-auth-ktx")
-    // Also add the dependency for the Google Play services library and specify its version
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+
 
     /*Librería inicio de sesión con correo electronico  desactualizadas*/
     // implementation platform('com.google.firebase:firebase-bom:29.2.0')
@@ -159,6 +159,8 @@ dependencies {
     //add firebase
   //  implementation platform('com.google.firebase:firebase-bom:32.3.1')
 
+    //Iniciar sesion con google
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 
 
 }

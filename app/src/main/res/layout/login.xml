@@ -144,7 +144,6 @@
                 android:background="@drawable/rounded_button"
                 android:backgroundTint="@color/white"
                 android:drawableLeft="@drawable/google"
-                android:onClick="callSignInGoogle"
                 android:paddingLeft="10dp"
                 android:text="@string/google"
                 android:textAlignment="textStart"
