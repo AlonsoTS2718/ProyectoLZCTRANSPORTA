@@ -8,16 +8,27 @@
     android:orientation="vertical"
     android:background="@color/white">
 
+
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/comb" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.7"
+            android:background="@color/black"
+            app:layout_anchor="@+id/frameLayout"
+            app:layout_anchorGravity="center" />
 
     </FrameLayout>
 
@@ -133,7 +144,6 @@
                 android:background="@drawable/rounded_button"
                 android:backgroundTint="@color/white"
                 android:drawableLeft="@drawable/google"
-                android:onClick="callSignInGoogle"
                 android:paddingLeft="10dp"
                 android:text="@string/google"
                 android:textAlignment="textStart"
@@ -164,13 +174,7 @@
 
     </FrameLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.7"
-        android:background="@color/black"
-        app:layout_anchor="@+id/frameLayout"
-        app:layout_anchorGravity="center" />
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
