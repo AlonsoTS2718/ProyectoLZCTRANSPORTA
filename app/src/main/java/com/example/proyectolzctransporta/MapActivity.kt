@@ -1,6 +1,7 @@
 package com.example.proyectolzctransporta
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.graphics.Bitmap
@@ -10,6 +11,7 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,33 +34,33 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
-
-    private var googleMap: GoogleMap? = null //Variable para mapa
-    private var easyWayLocation: EasyWayLocation? = null
+    //Variables para mapa y ubicación en tiempo real
+    private var googleMap: GoogleMap? = null //MAPA
+    private var easyWayLocation: EasyWayLocation? = null //UBICACION
     private var myLocationLatLng: LatLng? = null
     private var markerUser: Marker? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        setContentView(layout.mapa)
-
         //Sin barrra superio
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-
         //Invoca al mapa
        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
 
-        //Invoca a ubicacion en tiempo rela
+
+        //Invoca a ubicacion en tiempo real
         val locationRequest = LocationRequest.create().apply {
+            //Configuracion de los intervalos para la actualización de la ubicación
             interval = 0
             fastestInterval = 0
-
             priority = Priority.PRIORITY_HIGH_ACCURACY
             smallestDisplacement = 1f
         }
@@ -165,6 +167,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         }catch(e: Resources.NotFoundException){
             Log.d("MAPAS", "Error: ${e.toString()}" )
         }
+        googleMap?.uiSettings?.isRotateGesturesEnabled = false
+        googleMap?.uiSettings?.isZoomControlsEnabled = false
+
     }
 
     override fun locationOn() {
@@ -173,7 +178,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
     override fun currentLocation(location: Location) { //Actualizacion de la posicion en tiempo real
         myLocationLatLng = LatLng(location.latitude, location.longitude) //lat y long de la posicion actual
-
 
         googleMap?.moveCamera(CameraUpdateFactory.newCameraPosition(
             CameraPosition.builder().target(myLocationLatLng!!).zoom(17f).build()
@@ -186,5 +190,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     override fun locationCancelled() {
 
     }
+
+    //CERRAR SESION
+
+    fun callSignOut(view: View){
+        signOut()
+    }
+    private fun signOut(){
+        FirebaseAuth.getInstance().signOut()
+        startActivity(Intent(this,LoginAppActivity::class.java))
+
+    }
+
 }
 

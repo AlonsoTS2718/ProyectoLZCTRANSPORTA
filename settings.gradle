@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        //REPOSITORIO PARA OBTENCIÓN DE GEOLOCALIZACIÓN
         maven { url 'https://jitpack.io' }
     }
 }

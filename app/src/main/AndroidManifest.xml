@@ -2,11 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <!--Permisos para obtener la ubicación-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.hardware.location.gps" />
+
+
 
     <application
         android:allowBackup="true"
@@ -22,26 +26,36 @@
             android:name=".MapActivity"
             android:exported="true"
             android:label="@string/title_activity_map"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".TerminosActivity"
             android:exported="true"
             android:label="@string/title_activity_terminos"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".OlvideContrasenaActivity"
             android:exported="true"
             android:label="@string/title_activity_olvide_contraseña"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
+            android:screenOrientation="locked"
+            />
         <activity
             android:name=".RegistrarActivity"
             android:exported="true"
             android:label="@string/title_activity_registrarme"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" /> <!-- Revisar este activity porque la agregue ahuevo -->
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
+            android:screenOrientation="locked"
+            /> <!-- Revisar este activity porque la agregue ahuevo -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" /> <!-- Revisar este activity porque la agregue ahuevo -->
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
+            android:screenOrientation="locked"
+            /> <!-- Revisar este activity porque la agregue ahuevo -->
         <activity
             android:name=".LoginAppActivity"
             android:exported="true"
@@ -53,6 +67,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <meta-data
