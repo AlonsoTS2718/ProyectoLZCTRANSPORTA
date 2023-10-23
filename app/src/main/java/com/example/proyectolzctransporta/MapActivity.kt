@@ -192,7 +192,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     }
 
     //CERRAR SESION
-
     fun callSignOut(view: View){
         signOut()
     }
