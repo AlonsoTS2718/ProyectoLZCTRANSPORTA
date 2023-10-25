@@ -2,13 +2,15 @@ package com.example.proyectolzctransporta
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -21,10 +23,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.FirebaseFirestore
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.properties.Delegates
+
 //sfsfsfs
 //hohoho
 
@@ -62,6 +62,10 @@ class LoginAppActivity : ComponentActivity() {
         etInicioContrasena = findViewById(R.id.etInicioContrasena)
         mAuth = FirebaseAuth.getInstance()
 
+        manageButtonLogin()
+        etInicioCorreo.doOnTextChanged{text,start,before,count -> manageButtonLogin()}
+        etInicioContrasena.doOnTextChanged{text,start,before,count -> manageButtonLogin()}
+
         val btnInicioSesion = findViewById<TextView>(R.id.btnInicioSesion)
         btnInicioSesion.setOnClickListener {
             login() // Llama al método login cuando se haga clic en el botón.
@@ -72,10 +76,8 @@ class LoginAppActivity : ComponentActivity() {
 
 
 
-
         }
-
-    }
+            }
 
     /*CODIG PARA INICIO SESIÓN GOOGLE*/
 
@@ -198,6 +200,7 @@ class LoginAppActivity : ComponentActivity() {
     }
 
 
+    //CONTROLAR FLUJO DE ACTIVITIES
     public override fun onStart() {
         super.onStart()
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -211,6 +214,25 @@ class LoginAppActivity : ComponentActivity() {
         startMain.addCategory(Intent.CATEGORY_HOME)
         startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(startMain)
+    }
+
+    //VERIFICAR CORREO ELECTRONICO
+
+    private fun manageButtonLogin(){
+        var btnInicioSesion = findViewById<TextView>(R.id.btnInicioSesion)
+        email = etInicioCorreo.text.toString()
+        password = etInicioContrasena.text.toString()
+
+
+        if (TextUtils.isEmpty(password) || !ValidatorEmail.isEmail(email) || password.length < 8){
+
+            btnInicioSesion.setBackgroundColor(ContextCompat.getColor(this, R.color.botonDeshabilitado))
+            btnInicioSesion.isEnabled = false
+        }
+        else{
+            btnInicioSesion.setBackgroundColor(ContextCompat.getColor(this, R.color.botonHabilitado))
+            btnInicioSesion.isEnabled = true
+        }
     }
 
 }

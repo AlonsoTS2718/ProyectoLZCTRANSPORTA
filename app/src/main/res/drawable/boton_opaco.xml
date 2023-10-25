@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+        <!-- Capa 1: Fondo existente -->
+        <item android:drawable="@drawable/rounded_button" />
+
+        <!-- Capa 2: Opacidad cuando presionado -->
+        <item android:state_pressed="true">
+            <shape>
+                <solid android:color="#000000" /> <!-- Cambia el valor hexadecimal del color y la opacidad según tus preferencias -->
+            </shape>
+        </item>
+    </layer-list>
+
