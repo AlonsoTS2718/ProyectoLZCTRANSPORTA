@@ -116,12 +116,23 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
 
     private fun ActivarServicio(){
+        if(myLocationLatLng != null){
+            easyWayLocation?.endUpdates()
+            easyWayLocation?.startLocation()
+            MostrarBotonSinServicio()
+
+        }
 
     }
     private fun DesactivarServicio(){
         easyWayLocation?.endUpdates()
+        if(myLocationLatLng != null){
+            MostrarBotonServicio()
+
+        }
 
     }
+
     private fun MostrarBotonServicio(){
 
         btnActivarServicio.visibility = View.GONE
