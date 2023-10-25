@@ -58,7 +58,7 @@ class LoginAppActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
-        etInicioCorreo = findViewById(R.id.etInicioCorreo)
+        etInicioCorreo = findViewById(R.id.etInicioCorreo);
         etInicioContrasena = findViewById(R.id.etInicioContrasena)
         mAuth = FirebaseAuth.getInstance()
 
@@ -69,18 +69,15 @@ class LoginAppActivity : ComponentActivity() {
         val txtInicioRegistrarme = findViewById<TextView>(R.id.txtInicioRegistrarme)
         txtInicioRegistrarme.setOnClickListener {
             registrar() // Llama al método login cuando se haga clic en el botón.
-        }
-        val btnInicioGoogle = findViewById<TextView>(R.id.btnInicioGoogle)
-        txtInicioRegistrarme.setOnClickListener {
-            registrar() // Llama al método login cuando se haga clic en el botón.
-        }
 
 
 
 
         }
 
-    /*CODIGO PARA INICIO SESIÓN GOOGLE*/
+    }
+
+    /*CODIG PARA INICIO SESIÓN GOOGLE*/
 
     fun callSignInGoogle (view:View){
         signInGoogle()

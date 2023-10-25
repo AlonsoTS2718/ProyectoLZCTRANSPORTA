@@ -2,11 +2,15 @@ package com.example.proyectolzctransporta
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -31,6 +35,12 @@ class RegistrarActivity : ComponentActivity() {
         apellidos = findViewById(R.id.etRegistrarApellido)
         numeroTelefono = findViewById(R.id.etRegistrarTelefono)
         mAuth = FirebaseAuth.getInstance()
+
+
+        manageButtonLogin()
+        etInicioCorreo.doOnTextChanged{text,start,before,count -> manageButtonLogin()}
+        etInicioContrasena.doOnTextChanged{text,start,before,count -> manageButtonLogin()}
+
     }
 
     fun register(view: View) {
@@ -83,6 +93,25 @@ class RegistrarActivity : ComponentActivity() {
     private fun goLogin() {
         startActivity(Intent(this, LoginAppActivity::class.java))
     }
+
+
+    private fun manageButtonLogin(){
+        var btnRegistrar = findViewById<TextView>(R.id.btnRegistrar)
+        var email = etInicioCorreo.text.toString()
+        var password = etInicioContrasena.text.toString()
+
+
+        if (TextUtils.isEmpty(password) || !ValidatorEmail.isEmail(email) || password.length < 8){
+
+            btnRegistrar.setBackgroundColor(ContextCompat.getColor(this, R.color.botonDeshabilitado))
+            btnRegistrar.isEnabled = false
+        }
+        else{
+            btnRegistrar.setBackgroundColor(ContextCompat.getColor(this, R.color.botonHabilitado))
+            btnRegistrar.isEnabled = true
+        }
+    }
+
 }
 
 
