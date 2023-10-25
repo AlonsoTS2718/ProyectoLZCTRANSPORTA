@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -43,14 +44,20 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var easyWayLocation: EasyWayLocation? = null // Gestión de ubicación
     private var myLocationLatLng: LatLng? = null // Coordenadas de la ubicación actual
     private var markerUser: Marker? = null // Marcador de usuario en el mapa
-    val btnActivarServicio = findViewById<Button>(id.btnActivarServicio)
-    val btnDesactivarServicio = findViewById<Button>(id.btnDesactivarServicio)
+    private lateinit var btnActivarServicio: Button
+    private lateinit var btnDesactivarServicio: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Establece el diseño de la actividad desde el archivo de diseño "mapa.xml"
         setContentView(R.layout.mapa)
+
+
+        btnActivarServicio = findViewById<Button>(R.id.btnActivarServicio)
+        btnDesactivarServicio = findViewById<Button>(R.id.btnDesactivarServicio)
+
+
+
 
         // Establece la actividad en modo pantalla completa sin barra superior
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
