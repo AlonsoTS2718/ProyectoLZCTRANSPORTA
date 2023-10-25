@@ -128,7 +128,7 @@ class LoginAppActivity : ComponentActivity() {
         }
 
     }
-
+/88
     /*---------------------------*/
 
     /*INICIO DE SESION FACEBOOK*/
