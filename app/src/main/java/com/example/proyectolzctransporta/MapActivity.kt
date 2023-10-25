@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -57,6 +58,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         btnDesactivarServicio = findViewById<Button>(R.id.btnDesactivarServicio)
 
 
+        btnActivarServicio.setOnClickListener {
+            ActivarServicio() // Llama al método ActivarServicio cuando se haga clic en el botón.
+        }
+        btnDesactivarServicio.setOnClickListener {
+            DesactivarServicio() // Llama al método DesactivarServicio cuando se haga clic en el botón.
+        }
 
 
         // Establece la actividad en modo pantalla completa sin barra superior
@@ -96,13 +103,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                     // El permiso de ubicación precisa fue concedido.
                     Log.d("LOCALIZACION", "Permiso concedido")
                     // Iniciamos la ubicación en tiempo real utilizando 'easyWayLocation'.
-                    easyWayLocation?.startLocation()
+                  //  easyWayLocation?.startLocation()
                 }
                 // Verificamos si el permiso de ubicación aproximada (ACCESS_COARSE_LOCATION) fue concedido.
                 permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
                     // El permiso de ubicación aproximada fue concedido.
                     Log.d("LOCALIZACION", "Permiso concedido con limitación")
                     // En este caso, podríamos tomar medidas alternativas si la ubicación precisa no está disponible.
+                    //  easyWayLocation?.startLocation()
                 }
                 else -> {
                     // Ninguno de los permisos de ubicación fue concedido.
@@ -221,7 +229,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         googleMap?.uiSettings?.isZoomControlsEnabled = true // Habilita los controles de zoom en el mapa
 
         // Comienza la actualización de la ubicación en tiempo real
-        easyWayLocation?.startLocation()
+       // easyWayLocation?.startLocation()
 
         // Verifica si la aplicación tiene permisos para acceder a la ubicación
         if (ActivityCompat.checkSelfPermission(

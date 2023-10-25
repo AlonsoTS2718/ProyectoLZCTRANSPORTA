@@ -60,6 +60,7 @@ class LoginAppActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
+        Log.d("LoginAppActivity", "onCreate is called")
         etInicioCorreo = findViewById(R.id.etInicioCorreo)
         etInicioContrasena = findViewById(R.id.etInicioContrasena)
         mAuth = FirebaseAuth.getInstance()
@@ -213,7 +214,7 @@ class LoginAppActivity : ComponentActivity() {
         super.onStart()
         val currentUser = FirebaseAuth.getInstance().currentUser
         if(currentUser != null){
-            goMain(currentUser.email.toString(), currentUser.providerId)
+           // goMain(currentUser.email.toString(), currentUser.providerId)
         }
     }
 

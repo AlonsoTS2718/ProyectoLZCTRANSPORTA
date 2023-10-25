@@ -22,7 +22,7 @@
         android:layout_marginBottom="110dp"
         android:background="@drawable/rounded_button"
         android:text="@string/activarServicio"
-        android:onClick="Localizarme"
+
 
         />
 
@@ -36,7 +36,6 @@
         android:layout_marginBottom="110dp"
         android:background="@drawable/rounded_button"
         android:text="@string/desactivarServicio"
-        android:onClick="Localizarme"
         android:visibility="gone"
         />
 
