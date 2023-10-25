@@ -43,6 +43,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var easyWayLocation: EasyWayLocation? = null // Gestión de ubicación
     private var myLocationLatLng: LatLng? = null // Coordenadas de la ubicación actual
     private var markerUser: Marker? = null // Marcador de usuario en el mapa
+    val btnActivarServicio = findViewById<Button>(id.btnActivarServicio)
+    val btnDesactivarServicio = findViewById<Button>(id.btnDesactivarServicio)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,6 +105,27 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                 }
             }
         }
+    }
+
+
+    private fun ActivarServicio(){
+
+    }
+    private fun DesactivarServicio(){
+        easyWayLocation?.endUpdates()
+
+    }
+    private fun MostrarBotonServicio(){
+
+        btnActivarServicio.visibility = View.GONE
+        btnDesactivarServicio.visibility = View.VISIBLE
+
+    }
+    private fun MostrarBotonSinServicio(){
+
+        btnActivarServicio.visibility = View.VISIBLE
+        btnDesactivarServicio.visibility = View.GONE
+
     }
 
 
