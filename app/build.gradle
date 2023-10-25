@@ -24,6 +24,10 @@ plugins {
 
 android {
 
+    viewBinding {
+        enabled = true
+    }
+
     namespace 'com.example.proyectolzctransporta'
     compileSdk 33
 

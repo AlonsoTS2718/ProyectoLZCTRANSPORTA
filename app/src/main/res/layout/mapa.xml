@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -15,7 +15,35 @@
         class="com.google.android.gms.maps.SupportMapFragment"/>
 
     <Button
-        android:id="@+id/btnBuscarCombi"
+        android:id="@+id/btnActivarServicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="110dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/activarServicio"
+        android:onClick="Localizarme"
+
+        />
+
+    <Button
+        android:id="@+id/btnDesactivarServicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="110dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/desactivarServicio"
+        android:onClick="Localizarme"
+        android:visibility="gone"
+        />
+
+    <Button
+        android:id="@+id/btnCerrarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -26,6 +54,10 @@
         android:text="@string/cerrarSesion"
         android:onClick="callSignOut"
         />
+
+
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
