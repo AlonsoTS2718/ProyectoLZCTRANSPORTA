@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.easywaylocation.EasyWayLocation
 import com.example.easywaylocation.Listener
+import com.example.proyectolzctransporta.LoginAppActivity.Companion.useremail
 import com.example.proyectolzctransporta.R.*
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.Priority
@@ -277,7 +278,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         // Puede ser utilizado para manejar eventos relacionados con la cancelación de la actualización de la ubicación.
     }
 
-
+/*
     // Método para cerrar sesión
     fun signOut(view: View) {
         // Este método se invoca cuando se hace clic en un elemento de la vista (por ejemplo, un botón) con el atributo `android:onClick="signOut"` en el archivo XML.
@@ -289,15 +290,22 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
     private fun signOut(){
         // Esta función privada se encarga de cerrar la sesión del usuario.
-
         // Obtiene una instancia de FirebaseAuth (autenticación de Firebase) y utiliza `signOut()` para cerrar la sesión del usuario actual.
         FirebaseAuth.getInstance().signOut()
-
         // Crea un Intent para redirigir al usuario a la actividad de inicio de sesión (LoginAppActivity).
         val intent = Intent(this, LoginAppActivity::class.java)
-
         // Inicia la actividad de inicio de sesión.
         startActivity(intent)
+    }
+*/
+    fun callSignOut(view: View){
+        signOut()
+    }
+    private fun signOut(){
+        useremail = ""
+
+        FirebaseAuth.getInstance().signOut()
+        startActivity (Intent(this, LoginAppActivity::class.java))
     }
 
 
