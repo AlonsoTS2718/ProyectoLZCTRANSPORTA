@@ -120,7 +120,7 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
-
+    //Firebase con con google
     //implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-database:20.2.2'
     implementation 'com.google.firebase:firebase-firestore:24.7.1'
@@ -131,14 +131,18 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation 'com.google.firebase:firebase-auth:22.0.2'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.0'
+  //  implementation platform('com.google.firebase:firebase-bom:31.0.2')
+    implementation 'com.google.firebase:firebase-auth'
+  //  implementation 'com.google.android.gms:play-services-auth:20.4.0'
 
 
 
     /*Librería inicio de sesión con correo electronico  desactualizadas*/
-    implementation platform('com.google.firebase:firebase-bom:29.2.0')
-    implementation 'com.google.firebase:firebase-auth:22.0.2'
-    implementation 'com.google.firebase:firebase-database:20.0.4'
-    implementation 'com.google.firebase:firebase-firestore:24.0.2'
+    //implementation platform('com.google.firebase:firebase-bom:29.2.0')
+    //implementation 'com.google.firebase:firebase-database:20.0.4'
+    //implementation 'com.google.firebase:firebase-firestore:24.0.2'
 
 
 
@@ -152,7 +156,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:20.0.0'
 
 
-    //
+    //Fragment
     implementation 'androidx.fragment:fragment:1.3.6'
 
     //Librerías para ubicación en tiepo real
@@ -161,13 +165,6 @@ dependencies {
 
     //hguarpa localizacin en tiempo real
     implementation 'com.github.imperiumlabs:GeoFirestore-Android:v1.4.0'
-
-
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.4.0'
-    implementation platform('com.google.firebase:firebase-bom:31.0.2')
-    implementation 'com.google.firebase:firebase-auth'
-    implementation 'com.google.android.gms:play-services-auth:20.4.0'
-
 
 
     //Librerías para inicio de sesión con facebook
