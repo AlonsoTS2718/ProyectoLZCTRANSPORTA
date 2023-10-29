@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-
-    <!--Permisos para obtener la ubicación-->
+    <!-- Permisos para obtener la ubicación -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.hardware.location.gps" />
-
-
 
     <application
         android:allowBackup="true"
@@ -23,39 +19,39 @@
         android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
         tools:targetApi="31">
         <activity
+            android:name=".GeoProv"
+            android:exported="false"
+            android:label="@string/title_activity_geo_prov"
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
+        <activity
             android:name=".MapActivity"
             android:exported="true"
             android:label="@string/title_activity_map"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
             android:screenOrientation="portrait"
-            />
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
         <activity
             android:name=".TerminosActivity"
             android:exported="true"
             android:label="@string/title_activity_terminos"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
             android:screenOrientation="portrait"
-            />
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
         <activity
             android:name=".OlvideContrasenaActivity"
             android:exported="true"
             android:label="@string/title_activity_olvide_contraseña"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
             android:screenOrientation="locked"
-            />
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" />
         <activity
             android:name=".RegistrarActivity"
             android:exported="true"
             android:label="@string/title_activity_registrarme"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
             android:screenOrientation="locked"
-            /> <!-- Revisar este activity porque la agregue ahuevo -->
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" /> <!-- Revisar este activity porque la agregue ahuevo -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.ProyectoLZCTRANSPORTA"
             android:screenOrientation="locked"
-            /> <!-- Revisar este activity porque la agregue ahuevo -->
+            android:theme="@style/Theme.ProyectoLZCTRANSPORTA" /> <!-- Revisar este activity porque la agregue ahuevo -->
         <activity
             android:name=".LoginAppActivity"
             android:exported="true"
@@ -64,34 +60,37 @@
             android:theme="@style/Theme.ProyectoLZCTRANSPORTA">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCEB44IRhVq6rs7RaUJD_580lEJhe5aAlA"/>
-
-
-        <!--ETIQUETAS PARA INICIO DE SESION DE FACEBOOK-->
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:value="AIzaSyCEB44IRhVq6rs7RaUJD_580lEJhe5aAlA" /> <!-- ETIQUETAS PARA INICIO DE SESION DE FACEBOOK -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
     </application>
 
 </manifest>

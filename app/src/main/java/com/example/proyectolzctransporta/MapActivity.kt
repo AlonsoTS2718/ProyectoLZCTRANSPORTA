@@ -37,6 +37,7 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.oAuthProvider
 
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
@@ -49,6 +50,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private lateinit var btnActivarServicio: Button
     private lateinit var btnDesactivarServicio: Button
 
+            private val aunProvider = AunProvider()
+    private val geoProvider = GeoProviders()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -109,6 +112,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                     Log.d("LOCALIZACION", "Permiso concedido")
                     // Iniciamos la ubicación en tiempo real utilizando 'easyWayLocation'.
                     //easyWayLocation?.startLocation()
+                    checkIfDriverConected()
                 }
                 // Verificamos si el permiso de ubicación aproximada (ACCESS_COARSE_LOCATION) fue concedido.
                 permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
@@ -116,6 +120,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                     Log.d("LOCALIZACION", "Permiso concedido con limitación")
                     // En este caso, podríamos tomar medidas alternativas si la ubicación precisa no está disponible.
                     //easyWayLocation?.startLocation()
+                    checkIfDriverConected()
                 }
                 else -> {
                     // Ninguno de los permisos de ubicación fue concedido.
@@ -128,6 +133,29 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     }
 
 
+    private fun checkIfDriverConected(){
+        geoProvider.getLocation(aunProvider.getId()).addOnSuccessListener { document ->
+            if(document.exists()){
+                if(document.contains("l")){
+                    ActivarServicio()
+                }
+                else{
+                    MostrarBotonSinServicio()
+
+                }
+            }
+            else{
+                MostrarBotonServicio()
+            }
+        }
+    }
+
+    private fun saveLocation(){
+        if(myLocationLatLng!=null){
+            geoProvider.saveLocation(aunProvider.getId(), myLocationLatLng!!)
+        }
+    }
+
     private fun ActivarServicio(){
         easyWayLocation?.endUpdates()
         easyWayLocation?.startLocation()
@@ -137,7 +165,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private fun DesactivarServicio(){
         easyWayLocation?.endUpdates()
         if(myLocationLatLng != null){
+            geoProvider.removeLocation(aunProvider.getId())
             MostrarBotonServicio()
+
         }
 
     }
@@ -287,6 +317,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
         // Llama a la función `addMarker()` para agregar un marcador en la nueva ubicación.
         addMarker()
+        saveLocation()
     }
 
     override fun locationCancelled() {

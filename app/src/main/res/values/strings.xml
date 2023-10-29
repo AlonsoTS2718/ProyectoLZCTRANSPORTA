@@ -33,11 +33,10 @@
     <string name="default_web_client_id" />
 
     <!-- INICIO SESION FACEBOOK -->
-    <string name="facebook_app_id">707761877483226</string>
+    <string name="facebook_app_id">1009864013469540</string>
     <string name="fb_login_protocol_scheme">fb707761877483226</string>
     <string name="facebook_client_token">ddf62ac18d1db19d696633cebf1b68bd</string>
-
-
+    <string name="title_activity_geo_prov">GeoProv</string>
 
 
 </resources>
