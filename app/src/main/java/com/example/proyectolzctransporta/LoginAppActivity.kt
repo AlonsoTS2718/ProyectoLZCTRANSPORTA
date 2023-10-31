@@ -92,7 +92,7 @@ class LoginAppActivity : ComponentActivity() {
 
     /*CODIG PARA INICIO SESIÓN GOOGLE*/
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 10001) {
@@ -108,6 +108,66 @@ class LoginAppActivity : ComponentActivity() {
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
                     }
                 }
+        }
+    }*//*
+   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+       super.onActivityResult(requestCode, resultCode, data)
+
+       if (requestCode == 10001) {
+           if (resultCode == RESULT_OK) {
+               // El inicio de sesión con Google fue exitoso
+               val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+               try {
+                   val account = task.getResult(ApiException::class.java)
+                   val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                   FirebaseAuth.getInstance().signInWithCredential(credential)
+                       .addOnCompleteListener { task ->
+                           if (task.isSuccessful) {
+                               goMain(account.email ?: "", "google")
+                           } else {
+                               Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
+                           }
+                       }
+               } catch (e: ApiException) {
+                   Toast.makeText(this, "Error en la conexión con Google", Toast.LENGTH_SHORT).show()
+               }
+           } else {
+               // El inicio de sesión con Google fue cancelado o falló
+               Toast.makeText(this, "Inicio de sesión con Google cancelado o fallido", Toast.LENGTH_SHORT).show()
+           }
+       }
+   }
+
+*/
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 10001) {
+            if (resultCode == RESULT_OK) {
+                // El inicio de sesión con Google fue exitoso
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                try {
+                    val account = task.getResult(ApiException::class.java)
+                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+                    FirebaseAuth.getInstance().signInWithCredential(credential)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                goMain(account.email ?: "", "google")
+                            } else {
+                                Log.d("GoogleSignIn", "Error en el inicio de sesión con Google: ${task.exception?.message}")
+                                Toast.makeText(this, "Error en la conexión con Google", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                } catch (e: ApiException) {
+                    Log.d("GoogleSignIn", "Error en el inicio de sesión con Google: $e")
+                    Toast.makeText(this, "Error en la conexión con Google", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                // El inicio de sesión con Google fue cancelado o falló
+                Log.d("GoogleSignIn", "Inicio de sesión con Google cancelado o fallido")
+                Toast.makeText(this, "Inicio de sesión con Google cancelado o fallido", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -166,6 +226,7 @@ class LoginAppActivity : ComponentActivity() {
         Log.d("LoginAppActivity", "Iniciando sesión")
         loginUser()
     }
+    /*
     private fun loginUser() {
         email = etInicioCorreo.text.toString()
         password = etInicioContrasena.text.toString()
@@ -186,7 +247,30 @@ class LoginAppActivity : ComponentActivity() {
             Toast.makeText(this, "Error inesperado: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
+*/
 
+    // Agregar mensajes de depuración al método loginUser para el inicio de sesión por correo
+    private fun loginUser() {
+        email = etInicioCorreo.text.toString()
+        password = etInicioContrasena.text.toString()
+        try {
+            mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        goMain(email, "email")
+                    } else {
+                        // Manejar errores aquí y mostrar un mensaje al usuario
+                        val errorMessage = task.exception?.message ?: "Error desconocido"
+                        Log.d("LoginAppActivity", "Error al iniciar sesión: $errorMessage")
+                        Toast.makeText(this, "Error al iniciar sesión: $errorMessage", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e("LoginAppActivity", "Error inesperado: ${e.message}")
+            Toast.makeText(this, "Error inesperado: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     private fun goMain(email: String, provider: String) {
         Log.d("LoginAppActivity", "Ingresando a la actividad principal")
