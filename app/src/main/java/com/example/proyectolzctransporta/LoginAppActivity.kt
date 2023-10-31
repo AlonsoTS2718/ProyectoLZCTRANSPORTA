@@ -29,8 +29,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.properties.Delegates
 import com.facebook.FacebookSdk;
-//sfsfsfs
-//hohoho
+
 
 class LoginAppActivity : ComponentActivity() {
     companion object{
@@ -39,25 +38,21 @@ class LoginAppActivity : ComponentActivity() {
 
 //12102023
     }
-
-    private var RESULT_CODE_GOOGLE_SIGN_IN = 100
     private var email by Delegates.notNull<String>()
     private var password by Delegates.notNull<String>()
     private lateinit var etInicioCorreo: EditText
     private lateinit var etInicioContrasena: EditText
     private lateinit var mAuth: FirebaseAuth
+
+
+
+    /*VARIABLES PARA GOOGLE*/
     private lateinit var textView: TextView
     private lateinit var client: GoogleSignInClient
 
 
-
-
     /*VARIABLES PARA INICIO SESIÓN FACEBOOK*/
     private val callbackManager = CallbackManager.Factory.create()
-
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,57 +74,60 @@ class LoginAppActivity : ComponentActivity() {
         etInicioCorreo.doOnTextChanged{text,start,before,count -> manageButtonLogin()}
         etInicioContrasena.doOnTextChanged{text,start,before,count -> manageButtonLogin()}
 
+
+        textView = findViewById(R.id.btnInicioGoogle)
+        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        client = GoogleSignIn.getClient(this, options)
+
+        textView.setOnClickListener {
+            val intent = client.signInIntent
+            startActivityForResult(intent, 10001)
+        }
+
+
     }
 
     /*CODIG PARA INICIO SESIÓN GOOGLE*/
 
-    fun callSignInGoogle (view:View){
-        signInGoogle()
-    }
-    private fun signInGoogle(){
-        // Configure Google Sign In
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        var googleSignInClient = GoogleSignIn.getClient(this, gso)
-        googleSignInClient.signOut()
-
-        startActivityForResult(googleSignInClient.signInIntent, RESULT_CODE_GOOGLE_SIGN_IN)
-
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RESULT_CODE_GOOGLE_SIGN_IN) {
+        if (requestCode == 10001) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            val account = task.getResult(ApiException::class.java)
+            val credential = GoogleAuthProvider.getCredential(account.idToken, null)
 
-            try {
-                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)!!
-
-                if (account != null){
-                    email = account.email!!
-                    val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-                    mAuth.signInWithCredential(credential).addOnCompleteListener{
-                        if (it.isSuccessful) goMain(email, "Google")
-                        else Toast.makeText(this, "Error en la conexión con Google", Toast.LENGTH_SHORT)
-
+            FirebaseAuth.getInstance().signInWithCredential(credential)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        goMain(account.email ?: "", "google")
+                    } else {
+                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
                     }
                 }
-
-
-            } catch (e: ApiException) {
-                Toast.makeText(this, "Error en la conexión con Google", Toast.LENGTH_SHORT)
-            }
         }
-
     }
 
-    /*---------------------------*/
+
+
+    public override fun onStart() {
+        super.onStart()
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        if (currentUser != null) {
+            // Usuario ya autenticado, redirigir a la actividad principal
+            goMain(currentUser.email.toString(), currentUser.providerId)
+        }
+    }
+
+
+
+
+
 
     /*INICIO DE SESION FACEBOOK*/
     fun callSignInFacebook (view:View){
@@ -201,9 +199,6 @@ class LoginAppActivity : ComponentActivity() {
         startActivity(Intent(this, RegistrarActivity::class.java))
     }
 
-
-
-
     private fun manageButtonLogin(){
         var btnInicioSesion = findViewById<TextView>(R.id.btnInicioSesion)
         var email = etInicioCorreo.text.toString()
@@ -221,25 +216,12 @@ class LoginAppActivity : ComponentActivity() {
         }
     }
 
-
-
-    public override fun onStart(){
-        super.onStart()
-        val currentUser = FirebaseAuth.getInstance().currentUser
-
-        if(currentUser != null){
-            goMain(currentUser.email.toString(), currentUser.providerId)
-        }
-
-    }
-
     override fun onBackPressed() {
         val startMain = Intent(Intent.ACTION_MAIN)
         startMain.addCategory((Intent.CATEGORY_HOME))
         startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(startMain)
     }
-
 
 
 

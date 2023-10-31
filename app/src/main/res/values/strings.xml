@@ -1,4 +1,6 @@
 <resources>
+
+    <string name="default_web_client_id" translatable="false">951846967116-5acr5vl31rfadiqf9smv4fica455m53p.apps.googleusercontent.com</string>
     <string name="app_name">ProyectoLZCTRANSPORTA</string>
     <string name="iniciarSesion">Iniciar sesión</string>
     <string name="correo">Correo</string>
@@ -30,7 +32,7 @@
     <string name="activarServicio">Activar Servicio</string>
     <string name="desactivarServicio">Desactivar Servicio</string>
     <string name="google_maps_key">AIzaSyCEB44IRhVq6rs7RaUJD_580lEJhe5aAlA</string>
-    <string name="default_web_client_id" />
+
 
     <!-- INICIO SESION FACEBOOK -->
     <string name="facebook_app_id">1009864013469540</string>
