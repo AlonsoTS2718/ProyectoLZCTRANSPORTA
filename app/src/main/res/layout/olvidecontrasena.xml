@@ -1,55 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    >
-    <TextView
-        android:id="@+id/imgOlvideContraseña"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:drawableStart="@drawable/account_reactivate"
-        android:drawableTint="@color/blue2"
-        />
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/etOlvideCorreo"
-        style="@style/viewCustom"
-        android:hint="@string/correo"
-        android:inputType="textEmailAddress"
-        android:paddingTop="20dp"
-        android:layout_marginTop="0dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/blue"
-        android:backgroundTint="@color/blue"
-        />
-    <EditText
-        android:id="@+id/etOlvideTelefono"
-        style="@style/viewCustom"
-        android:hint="@string/telefono"
-        android:inputType="phone"
-        android:paddingTop="20dp"
-        android:layout_marginTop="0dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/blue"
-        android:backgroundTint="@color/blue"
-        />
 
-    <TextView
-        android:id="@+id/btnOlvideRecuperar"
-        style="@style/viewCustom"
-        android:background="@color/blue"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:paddingTop="7dp"
-        android:paddingBottom="7dp"
-        android:textAlignment="center"
-        android:text="@string/recuperar"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:onClick="Recuperar"
-        />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/comb"
+                    android:scaleType="centerCrop"
+                    />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                android:alpha="0.7" />
+
+        </FrameLayout>
+
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_gravity="center">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="700dp"
+                    android:background="@drawable/rounded_layout"
+                    android:alpha="0.3"
+                    />
+
+        <LinearLayout
+
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                android:id="@+id/imgOlvideContraseña"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/account_reactivate"
+
+                />
+
+                <TextView
+                android:id="@+id/txtInicioCorreo"
+                style="@style/viewCustom"
+                android:padding="5dp"
+                android:gravity="center_horizontal"
+                android:text="@string/recuperarUsuario"
+                android:textSize="15sp"
+                android:textColor="@color/white" />
+
+
+                 <EditText
+                android:id="@+id/etOlvideCorreo"
+                style="@style/viewCustom"
+                android:hint="@string/correo"
+                android:inputType="textEmailAddress"
+                android:paddingTop="20dp"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:backgroundTint="@color/black"
+                     android:drawableStart="@drawable/ic_email_white"
+
+                />
+
+                <EditText
+                android:id="@+id/etOlvideTelefono"
+                style="@style/viewCustom"
+                android:hint="@string/telefono"
+                android:inputType="phone"
+                android:paddingTop="20dp"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:backgroundTint="@color/black"
+                    android:drawableStart="@drawable/ic_phone_white"
+                />
+
+                <TextView
+                android:id="@+id/btnOlvideRecuperar"
+                style="@style/viewCustom"
+
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:textAlignment="center"
+                android:text="@string/recuperar"
+
+                android:textStyle="bold"
+                android:onClick="Recuperar"
+                    android:background="@drawable/rounded_button"
+                    android:textColor="@color/black"
+
+                />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

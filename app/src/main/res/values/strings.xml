@@ -21,6 +21,8 @@
     <string name="telefono">Número de telefono</string>
     <string name="registra">Registrar usuario</string>
     <string name="recuperar">Recuperar Contraseña</string>
+    <string name="recuperarUsuario">Recuperar Usuario</string>
+
 
     <string name="tituloUbicacion">Permitir acceso a ubicacion</string>
     <string name="preguntaUbicacion">¿Desea Permitir acceso a ubicacion?</string>
