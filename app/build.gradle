@@ -177,6 +177,13 @@ dependencies {
     //Firebase con geolocalizacion
     implementation 'com.github.imperiumlabs:GeoFirestore-Android:v1.4.0'
 
+    //Botones origen y destino
+    implementation 'com.google.maps.android:places-ktx:2.0.0'
+
+    implementation 'com.google.android.libraries.places:places:3.2.0'
+    implementation 'com.android.volley:volley:1.2.1'
+
+
 }
 
 
