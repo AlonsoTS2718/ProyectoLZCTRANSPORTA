@@ -7,6 +7,7 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
+import android.location.Geocoder
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
@@ -258,6 +259,34 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     }
 
 
+    private fun onCameraMove(){
+        googleMap?.setOnCameraIdleListener {
+            try{
+               val geocoder = Geocoder(this)
+                originLatLng = googleMap?.cameraPosition?.target
+
+                if(originLatLng != null){
+                    val addressList = geocoder.getFromLocation(originLatLng?.latitude!!, originLatLng?.longitude!!, 1)
+                    if (addressList != null) {
+                        if(addressList.size > 0){
+                            val city = addressList.get(0).locality
+                            val country = addressList.get(0).countryName
+                            val addres = addressList.get(0).getAddressLine(0)
+                            originName = "$addres $city"
+                            autocompleteOrigin?.setText("$addres $city")
+
+                        }
+                    }
+                }
+
+
+
+            } catch(e: Exception){
+                Log.d("ERROR","Mensaje error: ${e.message}")
+            }
+        }
+    }
+
     private fun startGooglePlaces(){
         if(!Places.isInitialized()){
             Places.initialize(applicationContext, resources.getString(R.string.google_maps_key))
@@ -355,7 +384,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     override fun onMapReady(map: GoogleMap) {
         googleMap = map // Asigna el objeto GoogleMap proporcionado por el mapa
         googleMap?.uiSettings?.isZoomControlsEnabled = true // Habilita los controles de zoom en el mapa
-
+        onCameraMove()
         // Comienza la actualización de la ubicación en tiempo real
       //  easyWayLocation?.startLocation()
 
@@ -407,14 +436,21 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         myLocationLatLng = LatLng(location.latitude, location.longitude)
 
         // Mueve la cámara del mapa a la nueva ubicación con un nivel de zoom de 17 (más cercano).
-        googleMap?.moveCamera(
+       /* googleMap?.moveCamera(
             CameraUpdateFactory.newCameraPosition(
                 CameraPosition.builder().target(myLocationLatLng!!).zoom(17f).build()
-            )
-        )
+            ))*/
 
         if(!isLocationEnabled){
+
             isLocationEnabled = true
+
+            // Mueve la cámara del mapa a la nueva ubicación con un nivel de zoom de 15 (más cercano).
+            googleMap?.moveCamera(
+                CameraUpdateFactory.newCameraPosition(
+                    CameraPosition.builder().target(myLocationLatLng!!).zoom(15f).build()
+                ))
+
             limitSearch()
         }
 
