@@ -103,8 +103,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         }
 
         // Inicializa EasyWayLocation para gestionar la ubicación en tiempo real
-        easyWayLocation = EasyWayLocation(this, locationRequest, false, false, this)
 
+        easyWayLocation = EasyWayLocation(this, locationRequest, false, false, this)
+        easyWayLocation?.startLocation()
         // Solicita permisos de ubicación al usuario
         locationPermissions.launch(arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -184,6 +185,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         easyWayLocation?.endUpdates()
         easyWayLocation?.startLocation()
         MostrarBotonSinServicio()
+
 
     }
     private fun DesactivarServicio(){
