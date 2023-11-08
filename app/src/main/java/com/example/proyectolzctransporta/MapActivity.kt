@@ -1,6 +1,8 @@
 package com.example.proyectolzctransporta
 
 import android.Manifest
+import android.content.Context
+
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
@@ -46,7 +48,10 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.oAuthProvider
+import com.google.firebase.firestore.GeoPoint
 import com.google.maps.android.SphericalUtil
+import org.imperiumlabs.geofirestore.GeoQuery
+import org.imperiumlabs.geofirestore.callbacks.GeoQueryEventListener
 
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
@@ -58,8 +63,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var markerUser: Marker? = null // Marcador de usuario en el mapa
     private lateinit var btnActivarServicio: Button
     private lateinit var btnDesactivarServicio: Button
-
-            private val aunProvider = AunProvider()
+    private val aunProvider = AunProvider()
     private val geoProvider = GeoProviders()
 
     //Variable google places
@@ -72,7 +76,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var destinationLatLng: LatLng? = null
     private var isLocationEnabled = false
 
-
+    private val driverMarkers = ArrayList<Marker>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,7 +109,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         // Inicializa EasyWayLocation para gestionar la ubicación en tiempo real
 
         easyWayLocation = EasyWayLocation(this, locationRequest, false, false, this)
-        easyWayLocation?.startLocation()
+        //easyWayLocation?.startLocation()
         // Solicita permisos de ubicación al usuario
         locationPermissions.launch(arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -261,6 +265,76 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     }
 
 
+    private fun getNearbyDrivers(){
+
+        if(myLocationLatLng == null) return
+        geoProvider.getNearbyDrivers(myLocationLatLng!!, 20.0).addGeoQueryEventListener(object: GeoQueryEventListener{
+
+            override fun onKeyEntered(documentID: String, location: GeoPoint) {
+                    Log.d("FIRESTORE","Document id: $documentID")
+                    Log.d("FIRESTORE","location: $location")
+                for(marker in driverMarkers){
+                    if(marker.tag != null){
+                        if(marker.tag == documentID){
+                           return
+                        }
+                    }
+                }
+
+
+                //CREAR UN NUEVO MRCADOR PARA EL CONDUCTOR CONECTADO
+               val driverLatLng = LatLng(location.latitude, location.longitude)
+
+
+                val marker = googleMap?.addMarker(
+                    MarkerOptions().position(driverLatLng).title("Condutor disponible").icon(
+                        BitmapDescriptorFactory.fromResource(R.drawable.combi2)
+
+                    )
+                )
+
+                marker?.tag = documentID
+                driverMarkers.add(marker!!)
+            }
+
+            override fun onKeyExited(documentID: String) {
+                for (marker in driverMarkers){
+                    if(marker.tag != null){
+                        if(marker.tag == documentID){
+                            marker.remove()
+                            driverMarkers.remove(marker)
+                            return
+                        }
+                    }
+                }
+            }
+
+            override fun onKeyMoved(documentID: String, location: GeoPoint) {
+                for (marker in driverMarkers){
+                    if(marker.tag != null){
+                        if(marker.tag == documentID){
+                          marker.position = LatLng(location.latitude, location.longitude)
+                        }
+                    }
+                }
+            }
+
+            override fun onGeoQueryError(exception: Exception) {
+
+            }
+
+            override fun onGeoQueryReady() {
+
+            }
+
+
+
+
+
+
+        })
+
+    }
     private fun onCameraMove(){
         googleMap?.setOnCameraIdleListener {
             try{
@@ -443,7 +517,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                 CameraPosition.builder().target(myLocationLatLng!!).zoom(17f).build()
             ))*/
 
-        if(!isLocationEnabled){
+        if(!isLocationEnabled){//Una sola vez
 
             isLocationEnabled = true
 
@@ -452,7 +526,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                 CameraUpdateFactory.newCameraPosition(
                     CameraPosition.builder().target(myLocationLatLng!!).zoom(15f).build()
                 ))
-
+            getNearbyDrivers()
             limitSearch()
         }
 

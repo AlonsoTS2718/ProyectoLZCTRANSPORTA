@@ -7,6 +7,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import org.imperiumlabs.geofirestore.GeoFirestore
+import org.imperiumlabs.geofirestore.GeoQuery
 
 class GeoProviders {
     val collection =FirebaseFirestore.getInstance().collection("Locations")
@@ -16,6 +17,12 @@ class GeoProviders {
 
     fun saveLocation(idUsers: String, position: LatLng){
         geoFirestore.setLocation(idUsers, GeoPoint(position.latitude, position.longitude))
+    }
+
+    fun getNearbyDrivers(position: LatLng, radius: Double): GeoQuery{
+        val query = geoFirestore.queryAtLocation(GeoPoint(position.latitude,position.longitude), radius)
+        query.removeAllListeners()
+        return query
     }
 
     fun removeLocation(idUsers: String){
