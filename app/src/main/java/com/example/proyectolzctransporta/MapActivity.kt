@@ -26,6 +26,8 @@ import com.example.easywaylocation.EasyWayLocation
 import com.example.easywaylocation.Listener
 import com.example.proyectolzctransporta.LoginAppActivity.Companion.useremail
 import com.example.proyectolzctransporta.R.*
+import com.example.proyectolzctransporta.models.DriverLocation
+import com.example.proyectolzctransporta.utils.CarMoveAnim
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.Priority
@@ -60,9 +62,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var googleMap: GoogleMap? = null // Referencia al mapa
     private var easyWayLocation: EasyWayLocation? = null // Gestión de ubicación
     private var myLocationLatLng: LatLng? = null // Coordenadas de la ubicación actual
-    private var markerUser: Marker? = null // Marcador de usuario en el mapa
-    private lateinit var btnActivarServicio: Button
-    private lateinit var btnDesactivarServicio: Button
+  //  private var markerUser: Marker? = null // Marcador de usuario en el mapa
+  //  private lateinit var btnActivarServicio: Button
+  //  private lateinit var btnDesactivarServicio: Button
     private val aunProvider = AunProvider()
     private val geoProvider = GeoProviders()
 
@@ -77,17 +79,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var isLocationEnabled = false
 
     private val driverMarkers = ArrayList<Marker>()
+    private val driversLocation = ArrayList<DriverLocation>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.mapa)
-
+/*
 
         btnActivarServicio = findViewById<Button>(R.id.btnActivarServicio)
         btnDesactivarServicio = findViewById<Button>(R.id.btnDesactivarServicio)
 
-
+*/
 
 
         // Establece la actividad en modo pantalla completa sin barra superior
@@ -119,13 +122,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         startGooglePlaces()
 
 
-        btnActivarServicio.setOnClickListener {
+      /*  btnActivarServicio.setOnClickListener {
             ActivarServicio()// Llama al método ActivarServicio cuando se haga clic en el botón.
         }
         btnDesactivarServicio.setOnClickListener {
             DesactivarServicio()// Llama al método DesactivarServicio cuando se haga clic en el botón.
         }
-
+*/
 
     }
 
@@ -140,16 +143,16 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                     // El permiso de ubicación precisa fue concedido.
                     Log.d("LOCALIZACION", "Permiso concedido")
                     // Iniciamos la ubicación en tiempo real utilizando 'easyWayLocation'.
-                    //easyWayLocation?.startLocation()
-                    checkIfDriverConected()
+                    easyWayLocation?.startLocation()
+                    //checkIfDriverConected()
                 }
                 // Verificamos si el permiso de ubicación aproximada (ACCESS_COARSE_LOCATION) fue concedido.
                 permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
                     // El permiso de ubicación aproximada fue concedido.
                     Log.d("LOCALIZACION", "Permiso concedido con limitación")
                     // En este caso, podríamos tomar medidas alternativas si la ubicación precisa no está disponible.
-                    //easyWayLocation?.startLocation()
-                    checkIfDriverConected()
+                    easyWayLocation?.startLocation()
+                  //  checkIfDriverConected()
                 }
                 else -> {
                     // Ninguno de los permisos de ubicación fue concedido.
@@ -162,7 +165,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     }
 
 
-    private fun checkIfDriverConected(){
+    /*private fun checkIfDriverConected(){
         geoProvider.getLocation(aunProvider.getId()).addOnSuccessListener { document ->
             if(document.exists()){
                 if(document.contains("l")){
@@ -178,14 +181,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             }
         }
     }
-
-    private fun saveLocation(){
+*/
+   /* private fun saveLocation(){
         if(myLocationLatLng!=null){
             geoProvider.saveLocation(aunProvider.getId(), myLocationLatLng!!)
         }
-    }
+    }*/
 
-    private fun ActivarServicio(){
+    /*private fun ActivarServicio(){
         easyWayLocation?.endUpdates()
         easyWayLocation?.startLocation()
         MostrarBotonSinServicio()
@@ -212,12 +215,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         btnActivarServicio.visibility = View.GONE
         btnDesactivarServicio.visibility = View.VISIBLE
 
-    }
+    }*/
 
 
 
     // Esta función se encarga de agregar un marcador en el mapa.
-    private fun addMarker() {
+    /*private fun addMarker() {
         // Obtenemos un objeto 'Drawable' que representa el icono del marcador.
         val drawable = ContextCompat.getDrawable(applicationContext, R.drawable.miubi)
 
@@ -241,8 +244,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             )
         }
     }
-
-
+*/
+/*
     // Esta función toma un objeto 'Drawable' y devuelve un 'BitmapDescriptor' que se puede utilizar como icono de marcador.
     private fun getMarkerFromDrawable(drawable: Drawable): BitmapDescriptor {
         // Creamos un lienzo (canvas) para dibujar el 'Drawable' en un 'Bitmap'.
@@ -264,7 +267,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
-
+*/
     private fun getNearbyDrivers(){
 
         if(myLocationLatLng == null) return
@@ -295,6 +298,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
                 marker?.tag = documentID
                 driverMarkers.add(marker!!)
+
+                val dl = DriverLocation()
+                dl.id  = documentID
+                driversLocation.add(dl)
             }
 
             override fun onKeyExited(documentID: String) {
@@ -303,6 +310,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                         if(marker.tag == documentID){
                             marker.remove()
                             driverMarkers.remove(marker)
+                            driversLocation.removeAt(getPositionDriver(documentID))
                             return
                         }
                     }
@@ -311,9 +319,21 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
             override fun onKeyMoved(documentID: String, location: GeoPoint) {
                 for (marker in driverMarkers){
+                    val start = LatLng(location.latitude, location.longitude)
+                    var end: LatLng? = null
+                    val position = getPositionDriver(marker.tag.toString())
+
                     if(marker.tag != null){
                         if(marker.tag == documentID){
-                          marker.position = LatLng(location.latitude, location.longitude)
+                          //marker.position = LatLng(location.latitude, location.longitude)
+                            if (driversLocation[position].latlng != null){
+                                end = driversLocation[position].latlng
+                            }
+                            driversLocation[position].latlng = LatLng(location.latitude, location.longitude)
+                            if (end != null){
+                                CarMoveAnim.carAnim(marker,end,start)
+                            }
+
                         }
                     }
                 }
@@ -335,6 +355,19 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         })
 
     }
+
+    private fun getPositionDriver(id: String): Int{
+        var position = 0
+        for(i in driversLocation.indices){
+            if (id == driversLocation[i].id){
+                position = 1
+                break
+            }
+        }
+        return position
+    }
+
+
     private fun onCameraMove(){
         googleMap?.setOnCameraIdleListener {
             try{
@@ -462,7 +495,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         googleMap?.uiSettings?.isZoomControlsEnabled = true // Habilita los controles de zoom en el mapa
         onCameraMove()
         // Comienza la actualización de la ubicación en tiempo real
-      //  easyWayLocation?.startLocation()
+        easyWayLocation?.startLocation()
 
         // Verifica si la aplicación tiene permisos para acceder a la ubicación
         if (ActivityCompat.checkSelfPermission(
@@ -494,7 +527,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             Log.d("MAPAS", "Error: ${e.toString()}")
         }
 
-        // Deshabilita la capacidad de rotar el mapa con gestos y los controles de zoom en el mapa
+    // Deshabilita la capacidad de rotar el mapa con gestos y los controles de zoom en el mapa
         googleMap?.uiSettings?.isRotateGesturesEnabled = false
         googleMap?.uiSettings?.isZoomControlsEnabled = false
     }
@@ -531,8 +564,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         }
 
         // Llama a la función `addMarker()` para agregar un marcador en la nueva ubicación.
-        addMarker()
-        saveLocation()
+       /* addMarker()
+        saveLocation()*/
     }
 
     override fun locationCancelled() {

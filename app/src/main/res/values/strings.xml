@@ -31,7 +31,7 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="buscarCombi">Buscar combi</string>
     <string name="cerrarSesion">Cerrar Sesion</string>
-    <string name="activarServicio">Activar Servicio</string>
+    <string name="solicitar">Solicitar viaje </string>
     <string name="desactivarServicio">Desactivar Servicio</string>
     <string name="google_maps_key">AIzaSyBfStMXeUJF8VU8y5mP2uNrDZ5koRiYBf8</string>
 
@@ -41,6 +41,7 @@
     <string name="fb_login_protocol_scheme">fb707761877483226</string>
     <string name="facebook_client_token">ddf62ac18d1db19d696633cebf1b68bd</string>
     <string name="title_activity_geo_prov">GeoProv</string>
+    <string name="title_activity_trip_info">TripInfoActivity</string>
 
 
 </resources>
