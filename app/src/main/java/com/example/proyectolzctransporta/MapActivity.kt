@@ -18,6 +18,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -67,6 +68,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
   //  private lateinit var btnDesactivarServicio: Button
     private val aunProvider = AunProvider()
     private val geoProvider = GeoProviders()
+    private lateinit var btnSolicitarviaje: Button
 
     //Variable google places
     private var places: PlacesClient? = null
@@ -83,14 +85,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Log.d("TripInfoActivity", "onCreate called")
         setContentView(R.layout.mapa)
-/*
 
-        btnActivarServicio = findViewById<Button>(R.id.btnActivarServicio)
-        btnDesactivarServicio = findViewById<Button>(R.id.btnDesactivarServicio)
+        btnSolicitarviaje = findViewById<Button>(R.id.btnSolicitarCombi)
 
-*/
+        /*
+
+                btnActivarServicio = findViewById<Button>(R.id.btnActivarServicio)
+                btnDesactivarServicio = findViewById<Button>(R.id.btnDesactivarServicio)
+
+        */
 
 
         // Establece la actividad en modo pantalla completa sin barra superior
@@ -121,14 +126,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
         startGooglePlaces()
 
+        // Llama al método ActivarServicio cuando se haga clic en el botón.
+        btnSolicitarviaje.setOnClickListener { goToTripInfo() }
 
-      /*  btnActivarServicio.setOnClickListener {
-            ActivarServicio()// Llama al método ActivarServicio cuando se haga clic en el botón.
-        }
-        btnDesactivarServicio.setOnClickListener {
-            DesactivarServicio()// Llama al método DesactivarServicio cuando se haga clic en el botón.
-        }
-*/
+
+        /*  btnActivarServicio.setOnClickListener {
+              ActivarServicio()// Llama al método ActivarServicio cuando se haga clic en el botón.
+          }
+          btnDesactivarServicio.setOnClickListener {
+              DesactivarServicio()// Llama al método DesactivarServicio cuando se haga clic en el botón.
+          }
+  */
 
     }
 
@@ -354,6 +362,24 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
         })
 
+    }
+
+    private fun goToTripInfo(){ Log.d("MapActivity", "goToTripInfo() called")
+
+        if(originLatLng != null && destinationLatLng != null) {
+
+            val i = Intent(this, TripInfoActivity::class.java)
+            i.putExtra("Origin", originName)
+            i.putExtra("Destination", destinationName)
+            i.putExtra("Origin_lat", originLatLng?.latitude)
+            i.putExtra("Origin_lng", originLatLng?.longitude)
+            i.putExtra("Destination_lat", destinationLatLng?.latitude)
+            i.putExtra("Destination_lng", destinationLatLng?.longitude)
+            startActivity(i)
+        }
+        else{
+            Toast.makeText(this, "Debes seleccionar el origen y el destino", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun getPositionDriver(id: String): Int{
