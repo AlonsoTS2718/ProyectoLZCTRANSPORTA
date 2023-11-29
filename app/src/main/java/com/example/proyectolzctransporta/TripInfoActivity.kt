@@ -54,7 +54,7 @@ class TripInfoActivity : AppCompatActivity(), OnMapReadyCallback, Listener, Dire
 
     private lateinit var textViewOrigen: TextView
     private lateinit var textViewDestination: TextView
-   // private lateinit var textViewOrigen: TextView
+    private lateinit var textViewTimAndDis: TextView
    // private lateinit var textViewOrigen: TextView
     private var originLatLng: LatLng? = null
     private var destinationLatLng: LatLng? = null
@@ -74,7 +74,7 @@ class TripInfoActivity : AppCompatActivity(), OnMapReadyCallback, Listener, Dire
         ImaAtras= findViewById<ImageView>(R.id.ImaVAtras)
         textViewOrigen = findViewById<TextView>(R.id.txtVOrigen)
         textViewDestination = findViewById<TextView>(R.id.txtVDestino)
-
+        textViewTimAndDis = findViewById<TextView>(R.id.txtVDisAndTim)
 
 
 
@@ -125,7 +125,7 @@ class TripInfoActivity : AppCompatActivity(), OnMapReadyCallback, Listener, Dire
 
     private fun addOriginMarker(){
         markerOrigin = googleMap?.addMarker(MarkerOptions().position(originLatLng!!).title("Mi position")
-            .icon(BitmapDescriptorFactory.fromResource(R.drawable.miubi)))
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.icons_location_person)))
     }
     private fun addDestinationMarker(){
         markerDestination = googleMap?.addMarker(MarkerOptions().position(destinationLatLng!!).title("LLegada")
@@ -160,8 +160,8 @@ class TripInfoActivity : AppCompatActivity(), OnMapReadyCallback, Listener, Dire
             ))
 
         easyDrawRoute()
-       // addOriginMarker()
-       // addDestinationMarker()
+        addOriginMarker()
+        addDestinationMarker()
 
         try {
             // Intenta establecer un estilo personalizado para el mapa utilizando un archivo JSON (R.raw.stilo)
@@ -200,10 +200,90 @@ class TripInfoActivity : AppCompatActivity(), OnMapReadyCallback, Listener, Dire
     }
 
     override fun pathFindFinish(
+
         polyLineDetailsMap: HashMap<String, PolyLineDataBean>,
         polyLineDetailsArray: ArrayList<PolyLineDataBean>
-    ) {
+    )
+
+    {
+        var p: String="";
+        var q: String="";
+        var distance = polyLineDetailsArray[1].distance.toDouble() //metros
+        var time = polyLineDetailsArray[1].time.toDouble() //segundos
+
+            if(distance < 1.0){
+                p="centimetros"
+            }
+            if(distance >= 1.0 && distance<1000.0){
+                p="metros"
+            }
+            if(distance >= 1000.0){
+                distance = distance / 1000.0
+                p="kilometros"
+            }
+            if(time < 60.0){
+                q="segundos"
+            }
+            if(time>=60.0&& time<3600){
+                time = time / 60.0
+                q="minutos"
+            }
+            if(time>=3600.0) {
+                time = time / 3600.0
+                q = "horas"
+            }
+
+        if(p=="centimetros"&&q=="segundos"){
+            val timeString = String.format("%.2f",time)
+            val distanceString = String.format("%.2f",distance)
+            textViewTimAndDis.text = "$timeString seg. - $distanceString cm."
+        }
+        if(p=="metros"&&q=="minutos"){
+            val timeString = String.format("%.2f",time)
+            val distanceString = String.format("%.2f",distance)
+            textViewTimAndDis.text = "$timeString min. - $distanceString mts."
+        }
+        if(p=="kilometros"&&q=="horas"){
+            val timeString = String.format("%.2f",time)
+            val distanceString = String.format("%.2f",distance)
+            textViewTimAndDis.text = "$timeString hrs. - $distanceString km."
+        }
+
+        if(p=="centimetros"&&q=="minutos"){
+            val timeString = String.format("%.2f",time)
+            val distanceString = String.format("%.2f",distance)
+            textViewTimAndDis.text = "$timeString min. - $distanceString cm."
+        }
+        if(p=="centimetros"&&q=="horas"){
+            val timeString = String.format("%.2f",time)
+            val distanceString = String.format("%.2f",distance)
+            textViewTimAndDis.text = "$timeString hrs. - $distanceString cm."
+        }
+        if(p=="metros"&&q=="segundos"){
+            val timeString = String.format("%.2f",time)
+            val distanceString = String.format("%.2f",distance)
+            textViewTimAndDis.text = "$timeString seg. - $distanceString mts."
+        }
+        if(p=="metros"&&q=="horas"){
+            val timeString = String.format("%.2f",time)
+            val distanceString = String.format("%.2f",distance)
+            textViewTimAndDis.text = "$timeString hrs. - $distanceString mts."
+        }
+        if(p=="kilometros"&&q=="segundos"){
+            val timeString = String.format("%.2f",time)
+            val distanceString = String.format("%.2f",distance)
+            textViewTimAndDis.text = "$timeString seg. - $distanceString km."
+        }
+        if(p=="kilometros"&&q=="minutos"){
+            val timeString = String.format("%.2f",time)
+            val distanceString = String.format("%.2f",distance)
+            textViewTimAndDis.text = "$timeString min. - $distanceString km."
+        }
+
+
         directionUtil.drawPath(WAY_POINT_TAG)
     }
+
+
 }
 

@@ -145,7 +145,7 @@
                     android:textStyle="bold"
                     />
                 <TextView
-                    android:id="@+id/txtVTime"
+                    android:id="@+id/txtVDisAndTim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.0 min y 0.0 m"
