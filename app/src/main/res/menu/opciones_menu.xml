@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/OpFlor"
+        android:title="Flor de abril"/>
+    <item
+        android:id="@+id/Op5"
+        android:title="5 de mayo"/>
+    <item
+        android:id="@+id/OpBascula"
+        android:title="Bascula"/>
+    <item
+        android:id="@+id/OpPrincipal"
+        android:title="Bascula principal"/>
+    <item
+        android:id="@+id/OpAlondra"
+        android:title="Alondra"/>
+    <item
+        android:id="@+id/OpPuesta"
+        android:title="Puesta del sol"/>
+</menu>

@@ -6,7 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/BtnOp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="240dp"
+        android:text="Rutas"
+        android:background="@color/blue"
 
+        />
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"
@@ -17,9 +26,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="¿A donde vamos?"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="60dp"
+        android:gravity="center"
         />
 
     <ImageView
@@ -35,7 +46,9 @@
     android:layout_width="match_parent"
     android:layout_height="270dp"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="30dp">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

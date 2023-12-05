@@ -17,6 +17,8 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.PopupMenu
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -69,6 +71,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private val aunProvider = AunProvider()
     private val geoProvider = GeoProviders()
     private lateinit var btnSolicitarviaje: Button
+    private lateinit var btnOp: Button
 
     //Variable google places
     private var places: PlacesClient? = null
@@ -80,6 +83,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var destinationLatLng: LatLng? = null
     private var isLocationEnabled = false
 
+
     private val driverMarkers = ArrayList<Marker>()
     private val driversLocation = ArrayList<DriverLocation>()
 
@@ -89,6 +93,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         setContentView(R.layout.mapa)
 
         btnSolicitarviaje = findViewById<Button>(R.id.btnSolicitarCombi)
+        btnOp = findViewById<Button>(R.id.BtnOp)
 
         /*
 
@@ -128,8 +133,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
         // Llama al método ActivarServicio cuando se haga clic en el botón.
         btnSolicitarviaje.setOnClickListener { goToTripInfo() }
-
-
+        btnOp.setOnClickListener { showOptionsMenu(it) }
         /*  btnActivarServicio.setOnClickListener {
               ActivarServicio()// Llama al método ActivarServicio cuando se haga clic en el botón.
           }
@@ -275,7 +279,51 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
+
+
+
 */
+
+
+    private fun showOptionsMenu(view: View) {
+        val popupMenu = PopupMenu(this, view)
+        popupMenu.inflate(R.menu.opciones_menu)
+
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.OpFlor -> {
+                    showToast("Ruta flor de abril seleccionada")
+                    true
+                }
+                R.id.Op5 -> {
+                    showToast("Ruta 05 de mayo seleccionada")
+                    true
+                }
+                R.id.OpBascula -> {
+                    showToast("Ruta Bascula seleccionada")
+                    true
+                } R.id.OpPrincipal -> {
+                    showToast("Ruta bascula principal seleccionada")
+                    true
+                }
+                R.id.OpAlondra -> {
+                    showToast("Ruta alondra seleccionada")
+                    true
+                }
+                R.id.OpPuesta -> {
+                    showToast("Ruta puesta del sol seleccionada")
+                    true
+                }
+                else -> false
+            }
+        }
+
+        popupMenu.show()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
     private fun getNearbyDrivers(){
 
         if(myLocationLatLng == null) return
