@@ -45,7 +45,6 @@ class LoginAppActivity : ComponentActivity() {
     private lateinit var mAuth: FirebaseAuth
 
 
-
     /*VARIABLES PARA GOOGLE*/
     private lateinit var textView: TextView
     private lateinit var client: GoogleSignInClient
@@ -86,6 +85,12 @@ class LoginAppActivity : ComponentActivity() {
             val intent = client.signInIntent
             startActivityForResult(intent, 10001)
         }
+
+
+
+
+
+
 
 
     }
@@ -186,42 +191,21 @@ class LoginAppActivity : ComponentActivity() {
 
 
 
-
-
-
     /*INICIO DE SESION FACEBOOK*/
-    fun callSignInFacebook (view:View){
-        signInFacebook()
-    }
-    private fun signInFacebook(){
-        LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
 
-        LoginManager.getInstance().registerCallback(callbackManager, object :
-            FacebookCallback<LoginResult> {
-            override fun onSuccess(result: LoginResult) {
-                result.let{
-                    val token = it.accessToken
-                    val credential = FacebookAuthProvider.getCredential(token.token)
-                    mAuth.signInWithCredential(credential).addOnCompleteListener {
-                        if (it.isSuccessful){
-                            email = it.result.user?.email.toString()
-                            goMain(email, "Facebook")
-                        }
-                        else showError("Facebook")
-                    }
-                }
-                //handleFacebookAccessToken(loginResult.accessToken)
-            }
 
-            override fun onCancel() { }
-            override fun onError(error: FacebookException) { showError("Facebook") }
-        })
 
-    }
+
+
+
+
+
+
+
+
     private fun showError (provider: String){
         Toast.makeText(this, "Error en la conexión con $provider", Toast.LENGTH_SHORT)
     }
-
     fun login() {
         Log.d("LoginAppActivity", "Iniciando sesión")
         loginUser()
@@ -309,7 +293,25 @@ class LoginAppActivity : ComponentActivity() {
 
 
 
+    fun forgotPassword(view: View){
+        resetPassword()
 
+    }
+    private fun resetPassword(){
+        var e = etInicioCorreo.text.toString()
+        if(!TextUtils.isEmpty(e)){
+            mAuth.sendPasswordResetEmail(e)
+                .addOnCompleteListener{
+                    if(it.isSuccessful){
+                        Toast.makeText(this,"E-mail enviado a ${e}",Toast.LENGTH_LONG).show()
+                    }else{
+                        Toast.makeText(this, "No se ha encontrado un usuario", Toast.LENGTH_LONG).show()
+                    }
+                }
+        }else{
+            Toast.makeText(this,"Ingresa un E-mail", Toast.LENGTH_SHORT).show()
+        }
+    }
 
 }
 

@@ -82,20 +82,7 @@
 
                 />
 
-                <EditText
-                android:id="@+id/etOlvideTelefono"
-                style="@style/viewCustom"
-                android:hint="@string/telefono"
-                android:inputType="phone"
-                android:paddingTop="20dp"
-                android:layout_marginTop="0dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:backgroundTint="@color/black"
-                    android:drawableStart="@drawable/ic_phone_white"
-                />
-
-                <TextView
+            <TextView
                 android:id="@+id/btnOlvideRecuperar"
                 style="@style/viewCustom"
 

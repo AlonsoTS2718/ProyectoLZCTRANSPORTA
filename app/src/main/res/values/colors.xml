@@ -10,6 +10,7 @@
     <color name="blue">#0303b5</color>
     <color name="blue2">#a875ff</color>
     <color name="botonDeshabilitado">#E3F4F4</color>
-    <color name="botonHabilitado">#00A9FF</color>
+    <color name="botonHabilitado">#00A9FF</color>}
+    <color name="azulRuta">#0303b5</color>
 </resources>
 

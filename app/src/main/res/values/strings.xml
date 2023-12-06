@@ -38,9 +38,14 @@
 
 
     <!-- INICIO SESION FACEBOOK -->
-    <string name="facebook_app_id">1009864013469540</string>
-    <string name="fb_login_protocol_scheme">fb707761877483226</string>
-    <string name="facebook_client_token">ddf62ac18d1db19d696633cebf1b68bd</string>
+    <string name="facebook_app_id">381331901020710</string>
+    <string name="fb_login_protocol_scheme">917aad141ac7fa616ed0e5e30452a115</string>
+    <string name="facebook_client_token">lfolydG3o1M96ls2nTaXIiDQeQM=</string>
+
+
+
+
+
     <string name="title_activity_geo_prov">GeoProv</string>
     <string name="title_activity_trip_info">TripInfoActivity</string>
 

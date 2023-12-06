@@ -129,7 +129,7 @@
                 android:id="@+id/txtInicioOlvideContrasena"
                 style="@style/viewCustom"
                 android:gravity="center_horizontal"
-                android:onClick="olvideContrasena"
+                android:onClick="forgotPassword"
                 android:paddingTop="0dp"
                 android:text="@string/olvideContraseña"
                 android:textColor="@color/white"
