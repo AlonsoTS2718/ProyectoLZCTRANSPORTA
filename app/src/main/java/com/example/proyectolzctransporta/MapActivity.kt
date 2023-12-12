@@ -17,6 +17,7 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Spinner
 import android.widget.TextView
@@ -76,7 +77,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private val aunProvider = AunProvider()
     private val geoProvider = GeoProviders()
     private lateinit var btnSolicitarviaje: Button
-    private lateinit var btnOp: Button
+    private lateinit var btnOp: ImageView
+
 
 
     //Variable google places
@@ -101,7 +103,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         setContentView(R.layout.mapa)
 
         btnSolicitarviaje = findViewById<Button>(R.id.btnSolicitarCombi)
-        btnOp = findViewById<Button>(R.id.BtnOp)
+        btnOp = findViewById<ImageView>(R.id.BtnOp)
 
 
         /*
