@@ -75,7 +75,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBfStMXeUJF8VU8y5mP2uNrDZ5koRiYBf8" /> <!-- ETIQUETAS PARA INICIO DE SESION DE FACEBOOK -->
+            android:value="AIzaSyDvczT6APLo403KEpZo-LnvRTRse0m3ZOk" /> <!-- ETIQUETAS PARA INICIO DE SESION DE FACEBOOK -->
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"

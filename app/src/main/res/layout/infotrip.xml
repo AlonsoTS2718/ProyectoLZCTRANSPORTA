@@ -91,13 +91,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Detino"
+                    android:text="Destino"
                     android:textSize="13sp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/txtVDestino"
                     android:layout_width="wrap_content"

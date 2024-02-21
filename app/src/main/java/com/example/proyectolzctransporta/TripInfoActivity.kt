@@ -89,6 +89,7 @@ class TripInfoActivity : AppCompatActivity(), OnMapReadyCallback, Listener, Dire
         extraDestinationLat = intent.getDoubleExtra("Destination_lat",0.0)
         extraDestinationLng = intent.getDoubleExtra("Destination_lng",0.0)
 
+        //Variables donde se almacenan las coordenadas origen, destino
         originLatLng = LatLng(extraOriginLat,extraOriginLng)
         destinationLatLng = LatLng(extraDestinationLat,extraDestinationLng)
 
@@ -286,4 +287,6 @@ class TripInfoActivity : AppCompatActivity(), OnMapReadyCallback, Listener, Dire
 
 
 }
+
+
 
