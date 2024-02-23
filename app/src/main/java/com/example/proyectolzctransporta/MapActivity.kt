@@ -169,23 +169,37 @@
 
         private fun createPolyLines(ruta: List<LatLng>) {
             //val initialCoordenates = LatLng(18.02540503645077, -102.21606601152054)
+
+            //Elimina la poliniea si existe una en el mapa
             polyline?.remove()
+
+            //Configuracion de las opciones de la nueva polilinea
             val polylineOptions: PolylineOptions = PolylineOptions()
-                .width(15f)
+                .width(15f) //Anocho de la linea
+                //Color de la linea del mapa
                 .color(ContextCompat.getColor(this, R.color.azulRuta))
+
+            //Iteraion sobre las coordenas de la ruta y agrega cada punto
+            //a la opciones de la polilinea
             for (i in ruta) {
                 polylineOptions.add(i)
             }
+
+            //Nueva polilinea
             polyline = googleMap.addPolyline(polylineOptions)
 
         }
 
 
         private fun showOptionsMenu(view: View) {
+            //Menu
             val popupMenu = PopupMenu(this, view)
+            //Menu inflado
             popupMenu.inflate(R.menu.opciones_menu)
 
+            //Linstener para los clics
             popupMenu.setOnMenuItemClickListener { item ->
+                //Opciones
                 when (item.itemId) {
                     R.id.OpFlor -> {
                         showToast("Ruta flor de abril seleccionada")
@@ -223,39 +237,53 @@
                         true
                     }
 
+                    //No evento
                     else -> false
                 }
             }
-
+            //Muestra el menu
             popupMenu.show()
         }
 
         private fun showToast(message: String) {
+            //Mensaje
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
 
             private fun getNearbyDrivers() {
-
+            //Si las coordenadas de la ubicacoin actual son nulas, sale de la funcion
             if (myLocationLatLng == null) return
-            geoProvider.getNearbyDrivers(myLocationLatLng!!, 20.0)
+
+                //Obtiene los conductores cercanos a un radio de 20.0 metros
+                geoProvider.getNearbyDrivers(myLocationLatLng!!, 20.0)
                 .addGeoQueryEventListener(object : GeoQueryEventListener {
 
+                    //Metodo cuando un conductor entra a la zona de busqueda
                     override fun onKeyEntered(documentID: String, location: GeoPoint) {
+
+
+                        //Id del documento y la ubicacion del conductor en log
                         Log.d("FIRESTORE", "Document id: $documentID")
                         Log.d("FIRESTORE", "location: $location")
+
+                        //Itera a travez de los marcadores de los conductores existentes
                         for (marker in driverMarkers) {
+                            //Verifica si el marcador tiene una etiqueta igual a ID del documento actual.
                             if (marker.tag != null) {
                                 if (marker.tag == documentID) {
+                                    // si existe un marcador con  el mismo ID del documento,
+                                    //sale de la funcion
                                     return
                                 }
                             }
                         }
 
 
-                        //CREAR UN NUEVO MRCADOR PARA EL CONDUCTOR CONECTADO
+                        //CREAR UN NUEVO MaRCADOR con las coordenadas PARA EL CONDUCTOR CONECTADO
                         val driverLatLng = LatLng(location.latitude, location.longitude)
 
-
+                        //Crea un marcador en el mapa para el conductor con la ubicacion
+                        // y el icono especificados
                         val marker = googleMap?.addMarker(
                             MarkerOptions().position(driverLatLng).title("Condutor disponible").icon(
                                 BitmapDescriptorFactory.fromResource(R.drawable.combi2)
@@ -263,39 +291,63 @@
                             )
                         )
 
+                        //Asigna el ID del documento al marcador y lo agrega a la
+                        // lista de marcadores de conductores
                         marker?.tag = documentID
                         driverMarkers.add(marker!!)
 
+                        //Crea un objeto DriveLocation con el ID del documento y lo
+                        //agrega a la lista de ubicaciones de conductores
                         val dl = DriverLocation()
                         dl.id = documentID
                         driversLocation.add(dl)
                     }
 
+                    //Metodo cuando un conductor sale de la zona de busqueca
                     override fun onKeyExited(documentID: String) {
+
+                        //Itera a traves de los conductores existente
                         for (marker in driverMarkers) {
+                            //Verifica si el conductor tiene una etiqueta
+                            // igual al ID del documento actual
                             if (marker.tag != null) {
                                 if (marker.tag == documentID) {
+                                    //Si existe un marcador con el mismo ID del documento,
+                                    //se elimnina del mapa, de la lista de marcadores y de la
+                                    //lista de ubicaciones de conductores.
                                     marker.remove()
                                     driverMarkers.remove(marker)
                                     driversLocation.removeAt(getPositionDriver(documentID))
+                                   //Sale de la funcion despues de realizar la operaciones
                                     return
                                 }
                             }
                         }
                     }
 
+                    //Metodo cuando la ubicacoin de un conductor en tiempo real se mueve
                     override fun onKeyMoved(documentID: String, location: GeoPoint) {
+
+                        //Itera atravez de los marcadores existentes
                         for (marker in driverMarkers) {
+                            //Nuevo LatLng para la nueva ubicacion del conductor
                             val start = LatLng(location.latitude, location.longitude)
+                            //Varieble end com nula
                             var end: LatLng? = null
+                            //Obtiene la posicion del conductor en la lista de ubicaciones
+                            // de conductores
                             val position = getPositionDriver(marker.tag.toString())
 
+                            //Verifica si el marcador tiene una etiqueta igual al ID del documento acutal
                             if (marker.tag != null) {
                                 if (marker.tag == documentID) {
                                     //marker.position = LatLng(location.latitude, location.longitude)
+                                    // Si existe un marcador con el mismo ID del documento, actualiza su posición.
+                                    // Si ya había una ubicación anterior del conductor, almacénala en la variable 'end'.
                                     if (driversLocation[position].latlng != null) {
                                         end = driversLocation[position].latlng
                                     }
+                                    // Actualiza la ubicacion del conductor en lista de ubicaciones de conductores.
                                     driversLocation[position].latlng =
                                         LatLng(location.latitude, location.longitude)
                                     if (end != null) {
