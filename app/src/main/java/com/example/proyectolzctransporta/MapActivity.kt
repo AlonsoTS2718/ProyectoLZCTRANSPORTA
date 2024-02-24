@@ -350,6 +350,7 @@
                                     // Actualiza la ubicacion del conductor en lista de ubicaciones de conductores.
                                     driversLocation[position].latlng =
                                         LatLng(location.latitude, location.longitude)
+                                    // Si hay una ubicacion anterio (end), anima el movimineto del marcador
                                     if (end != null) {
                                         CarMoveAnim.carAnim(marker, end, start)
                                     }
@@ -371,50 +372,69 @@
                 })
 
         }
+        //Funcion para ir a la pantalla infotrip
+        private fun goToTripInfo(){
 
-        private fun goToTripInfo() {
+            //Depuracion
             Log.d("MapActivity", "goToTripInfo() called")
 
+            //Verifica que las coordenadas no sean nula
             if (originLatLng != null && destinationLatLng != null) {
 
+                //inten cion para inciar la tividad de informacion del viaje
                 val i = Intent(this, TripInfoActivity::class.java)
+                //Informacion adicion para la intencion
                 i.putExtra("Origin", originName)
                 i.putExtra("Destination", destinationName)
                 i.putExtra("Origin_lat", originLatLng?.latitude)
                 i.putExtra("Origin_lng", originLatLng?.longitude)
                 i.putExtra("Destination_lat", destinationLatLng?.latitude)
                 i.putExtra("Destination_lng", destinationLatLng?.longitude)
+                //Inicio de la actividad con la intencion creada
                 startActivity(i)
             } else {
+                //Si las cooordenadas son nula, muestra un mensaje
                 Toast.makeText(this, "Debes seleccionar el origen y el destino", Toast.LENGTH_SHORT)
                     .show()
             }
         }
 
+        //Funcion para buscar la posicion de un conductor en la lista de drivesLocation mediante su ID
         private fun getPositionDriver(id: String): Int {
+            //Inicializacion de variable con valor predeterminado 0
             var position = 0
+            //Iteracion en los elementos de la lista de drivesLocation
             for (i in driversLocation.indices) {
+                //Si hay coincidencia, actualiza la variable a 1 y sale del bucle
                 if (id == driversLocation[i].id) {
                     position = 1
                     break
                 }
             }
+            //Retorna la posicion del conductor en la lista driversLocation
             return position
         }
 
 
         private fun onCameraMove() {
+            //Escuchador para detectar movimiento de la camara y esta inacitiva
             googleMap?.setOnCameraIdleListener {
                 try {
+                    //Instancia Geocoder para la invesion geografica de coordenadas a direcion
                     val geocoder = Geocoder(this)
+
+                    // Obtiene las coordenadas de destino de la posición actual de la cámara.
                     originLatLng = googleMap?.cameraPosition?.target
 
+                    // Verifica si las coordenadas de destino son nulas.
                     if (originLatLng != null) {
+                        //Obitne la lista de direciones para las coordenadas proporcionadas
                         val addressList = geocoder.getFromLocation(
                             originLatLng?.latitude!!,
                             originLatLng?.longitude!!,
                             1
                         )
+                        // Verifica
                         if (addressList != null) {
                             if (addressList.size > 0) {
                                 val city = addressList.get(0).locality
